@@ -23,8 +23,8 @@ const AirQuality = ({ AQI, darkMode }) => {
 
 	return (
 		<div className={containerStyle}>
-			<div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-				<Image src={icon} alt="Air Quality Icon" width={32} height={32} priority />
+			<div className={styles.titleWrapper}>
+				<Image src={icon} alt="Air Quality Icon" className={styles.iconSize} priority />
 				<h1 className={`${styles.Title} ${textColor}`}>Air Quality</h1>
 			</div>
 			<h2 className={`${styles.Text} ${textColor}`}>

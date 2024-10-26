@@ -29,23 +29,51 @@
     margin: 0;
 }
 
+.iconSize {
+    width: 32px;
+    height: 32px;
+}
+
+.titleWrapper {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+
 @media (max-width:640px) {
 
     .darkContainer,
     .lightContainer {
         width: 168px;
         height: 56px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .titleWrapper {
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .iconSize {
+        width: 24px;
+        height: 24px;
     }
 
     .Title {
-        font-size: 16px;
+        font-size: 12px;
         font-weight: 500;
+        width: 41px;
     }
 
     .Text {
-        font-size: 16px;
-        font-weight: 400;
+        font-size: 12px;
+        font-weight: 600;
     }
+
 
 }
 
