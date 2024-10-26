@@ -14,7 +14,7 @@ const AirQuality = ({ AQI, darkMode }) => {
 		if (value <= 100) return 'Moderate';
 		if (value <= 150) return 'Sensitive';
 		if (value <= 200) return 'Unhealthy';
-		if (value <= 300) return 'Very Unhealthy';
+		if (value <= 300) return 'Very Bad';
 		return 'Hazardous';
 	};
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;

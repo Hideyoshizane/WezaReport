@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import WeatherFetcher from '../src/components/WeatherFetch/WeatherFetch';
-
 import '../styles/globals.css'; // Import the global CSS file
 
 export default function Main() {
@@ -20,6 +19,7 @@ export default function Main() {
 				latitude: queryLatitude,
 				longitude: queryLongitude,
 			});
+			setLoading(true); // Reset loading state when location changes
 		}
 	}, [queryLatitude, queryLongitude]);
 
@@ -40,13 +40,16 @@ export default function Main() {
 					{weatherData && (
 						<div>
 							<h2>Current Weather Data</h2>
-							<pre>{JSON.stringify(weatherData.current, null, 2)}</pre>
-
-							<h2>Hourly Weather Data</h2>
-							<pre>{JSON.stringify(weatherData.hourly, null, 2)}</pre>
+							<pre>{JSON.stringify(weatherData.weather.current, null, 2)}</pre>
 
 							<h2>Daily Weather Data</h2>
-							<pre>{JSON.stringify(weatherData.daily, null, 2)}</pre>
+							<pre>{JSON.stringify(weatherData.weather.daily, null, 2)}</pre>
+
+							<h2>Current Air Quality Data</h2>
+							<pre>{JSON.stringify(weatherData.airQuality.current, null, 2)}</pre>
+
+							<h2>Hourly Air Quality Data</h2>
+							<pre>{JSON.stringify(weatherData.airQuality.hourly, null, 2)}</pre>
 						</div>
 					)}
 				</>

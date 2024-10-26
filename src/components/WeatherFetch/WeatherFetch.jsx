@@ -5,7 +5,6 @@ const WeatherFetcher = ({ latitude, longitude, onFetch }) => {
 	useEffect(() => {
 		const fetchWeatherData = async () => {
 			if (latitude && longitude) {
-				// Weather parameters
 				const weatherParams = {
 					latitude,
 					longitude,
@@ -13,66 +12,70 @@ const WeatherFetcher = ({ latitude, longitude, onFetch }) => {
 						'temperature_2m',
 						'relative_humidity_2m',
 						'precipitation',
+						'weather_code',
 						'cloud_cover',
 						'surface_pressure',
 						'wind_speed_10m',
 						'wind_direction_10m',
 					],
-					daily: ['weather_code', 'temperature_2m_max', 'temperature_2m_min', 'uv_index_max'],
+					daily: [
+						'weather_code',
+						'temperature_2m_max',
+						'temperature_2m_min',
+						'uv_index_max',
+						'precipitation_probability_max',
+					],
 					timezone: 'auto',
 				};
 
 				const weatherUrl = 'https://api.open-meteo.com/v1/forecast';
 
-				// Air quality parameters
 				const airQualityParams = {
 					latitude,
 					longitude,
 					current: 'us_aqi',
 					hourly: 'us_aqi',
 					timezone: 'auto',
-					forecast_days: 1,
 				};
 
 				const airQualityUrl = 'https://air-quality-api.open-meteo.com/v1/air-quality';
 
 				try {
 					// Fetching weather data
-					const weatherResponses = await fetchWeatherApi(weatherUrl, weatherParams);
-					const weatherResponse = weatherResponses[0];
+					const [weatherResponse] = await fetchWeatherApi(weatherUrl, weatherParams);
+					if (!weatherResponse) throw new Error('Weather response is undefined.');
 
 					// Fetching air quality data
-					const airQualityResponses = await fetchWeatherApi(airQualityUrl, airQualityParams);
-					const airQualityResponse = airQualityResponses[0];
+					const [airQualityResponse] = await fetchWeatherApi(airQualityUrl, airQualityParams);
+					if (!airQualityResponse) throw new Error('Air quality response is undefined.');
 
-					// Helper function to form time ranges
-					const range = (start, stop, step) =>
-						Array.from({ length: (stop - start) / step }, (_, i) => start + i * step);
-
-					// Weather data processing
 					const utcOffsetSeconds = weatherResponse.utcOffsetSeconds();
 					const currentWeather = weatherResponse.current();
 					const dailyWeather = weatherResponse.daily();
 
+					// Weather data processing
 					const weatherData = {
 						current: {
 							time: new Date((Number(currentWeather.time()) + utcOffsetSeconds) * 1000),
-							temperature2m: currentWeather.variables(0).value(),
-							relativeHumidity2m: currentWeather.variables(1).value(),
-							precipitation: currentWeather.variables(2).value(),
-							cloudCover: currentWeather.variables(3).value(),
-							surfacePressure: currentWeather.variables(4).value(),
-							windSpeed10m: currentWeather.variables(5).value(),
-							windDirection10m: currentWeather.variables(6).value(),
+							temperature2m: currentWeather.variables(0)?.value(),
+							relativeHumidity2m: currentWeather.variables(1)?.value(),
+							precipitation: currentWeather.variables(2)?.value(),
+							weatherCode: currentWeather.variables(3)?.value(),
+							cloudCover: currentWeather.variables(4)?.value(),
+							surfacePressure: currentWeather.variables(5)?.value(),
+							windSpeed10m: currentWeather.variables(6)?.value(),
+							windDirection10m: currentWeather.variables(7)?.value(),
 						},
 						daily: {
-							time: range(Number(dailyWeather.time()), Number(dailyWeather.timeEnd()), dailyWeather.interval()).map(
-								(t) => new Date((t + utcOffsetSeconds) * 1000)
+							time: Array.from(
+								{ length: dailyWeather.time().length },
+								(_, i) => new Date((Number(dailyWeather.time()[i]) + utcOffsetSeconds) * 1000)
 							),
-							weatherCode: dailyWeather.variables(0).valuesArray(),
-							temperature2mMax: dailyWeather.variables(1).valuesArray(),
-							temperature2mMin: dailyWeather.variables(2).valuesArray(),
-							uvIndexMax: dailyWeather.variables(3).valuesArray(),
+							weatherCode: dailyWeather.variables(0)?.valuesArray(),
+							temperature2mMax: dailyWeather.variables(1)?.valuesArray(),
+							temperature2mMin: dailyWeather.variables(2)?.valuesArray(),
+							uvIndexMax: dailyWeather.variables(3)?.valuesArray(),
+							precipitationProbabilityMax: dailyWeather.variables(4)?.valuesArray(),
 						},
 					};
 
@@ -83,15 +86,14 @@ const WeatherFetcher = ({ latitude, longitude, onFetch }) => {
 					const airQualityData = {
 						current: {
 							time: new Date((Number(currentAirQuality.time()) + utcOffsetSeconds) * 1000),
-							usAqi: currentAirQuality.variables(0).value(),
+							usAqi: currentAirQuality.variables(0)?.value(),
 						},
 						hourly: {
-							time: range(
-								Number(hourlyAirQuality.time()),
-								Number(hourlyAirQuality.timeEnd()),
-								hourlyAirQuality.interval()
-							).map((t) => new Date((t + utcOffsetSeconds) * 1000)),
-							usAqi: hourlyAirQuality.variables(0).valuesArray(),
+							time: Array.from(
+								{ length: hourlyAirQuality.time().length },
+								(_, i) => new Date((Number(hourlyAirQuality.time()[i]) + utcOffsetSeconds) * 1000)
+							),
+							usAqi: hourlyAirQuality.variables(0)?.valuesArray(),
 						},
 					};
 
@@ -101,10 +103,10 @@ const WeatherFetcher = ({ latitude, longitude, onFetch }) => {
 						airQuality: airQualityData,
 					};
 
-					// Pass the processed data back to the Main component
+					// Pass the processed data back to the parent component
 					onFetch(combinedData);
 				} catch (error) {
-					console.error('Error fetching data:', error);
+					console.error('Error fetching data:', error.message);
 				}
 			}
 		};
