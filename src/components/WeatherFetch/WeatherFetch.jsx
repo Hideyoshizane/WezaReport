@@ -23,6 +23,8 @@ const WeatherFetcher = ({ latitude, longitude, onFetch }) => {
 						'weather_code',
 						'temperature_2m_max',
 						'temperature_2m_min',
+						'sunrise',
+						'sunset',
 						'uv_index_max',
 						'precipitation_probability_max',
 					],
