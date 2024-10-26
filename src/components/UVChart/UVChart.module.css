@@ -1,0 +1,29 @@
+.chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width:640px) {
+
+    .chart {
+        width: 228px;
+        height: 119px;
+    }
+
+}
+
+@media(min-width: 641px) and (max-width:1447px) {
+    .chart {
+        width: 195px;
+        height: 150px;
+    }
+}
+
+@media (min-width: 1448px) {
+
+    .chart {
+        width: 200px;
+        height: 140px;
+    }
+}

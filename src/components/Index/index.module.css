@@ -1,0 +1,78 @@
+.background {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center {
+    width: 1440px;
+    height: 815px;
+    border-radius: 25px;
+    background-color: #f6f7f980;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    backdrop-filter: blur(25px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 24px;
+}
+
+/*Smartphone*/
+@media (max-width:640px) {
+    .center {
+        width: 95.733vw;
+        height: 89.462vh;
+        border-radius: 25px;
+        background-color: #f6f7f980;
+        box-shadow: 0px 4px 4px 0px #00000040;
+        backdrop-filter: blur(25px);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 16px;
+    }
+}
+
+/*Tablet*/
+@media(min-width: 641px) and (max-width:1447px) {
+    .center {
+        width: 97.504vw;
+        height: 89.462vh;
+        border-radius: 25px;
+        background-color: #f6f7f980;
+        box-shadow: 0px 4px 4px 0px #00000040;
+        backdrop-filter: blur(25px);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 16px;
+    }
+}
+
+/*Desktop*/
+@media (min-width: 1448px) {
+    .center {
+        width: 1440px;
+        height: 815px;
+        border-radius: 25px;
+        background-color: #f6f7f980;
+        box-shadow: 0px 4px 4px 0px #00000040;
+        backdrop-filter: blur(25px);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 24px;
+    }
+}
