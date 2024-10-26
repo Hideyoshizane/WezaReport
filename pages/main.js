@@ -28,6 +28,15 @@ export default function Main() {
 		setLoading(false); // Set loading to false once data is fetched
 	};
 
+	// Inline styles for overflow container
+	const overflowContainerStyle = {
+		maxHeight: '400px', // Set a max height to control how much is visible
+		overflowY: 'auto', // Allow vertical scrolling
+		padding: '10px', // Add some padding for aesthetics
+		border: '1px solid #ccc', // Optional: add a border
+		backgroundColor: '#f9f9f9', // Optional: background color
+	};
+
 	return (
 		<div>
 			{loading ? (
@@ -36,20 +45,24 @@ export default function Main() {
 				<>
 					<p>Latitude: {location.latitude || queryLatitude}</p>
 					<p>Longitude: {location.longitude || queryLongitude}</p>
-					{/* Render weather data here */}
 					{weatherData && (
 						<div>
 							<h2>Current Weather Data</h2>
-							<pre>{JSON.stringify(weatherData.weather.current, null, 2)}</pre>
-
+							<div style={overflowContainerStyle}>
+								<pre>{JSON.stringify(weatherData.weather.current, null, 2)}</pre>
+							</div>
 							<h2>Daily Weather Data</h2>
-							<pre>{JSON.stringify(weatherData.weather.daily, null, 2)}</pre>
-
+							<div style={overflowContainerStyle}>
+								<pre>{JSON.stringify(weatherData.weather.daily, null, 2)}</pre>
+							</div>
 							<h2>Current Air Quality Data</h2>
-							<pre>{JSON.stringify(weatherData.airQuality.current, null, 2)}</pre>
-
+							<div style={overflowContainerStyle}>
+								<pre>{JSON.stringify(weatherData.airQuality.current, null, 2)}</pre>
+							</div>
 							<h2>Hourly Air Quality Data</h2>
-							<pre>{JSON.stringify(weatherData.airQuality.hourly, null, 2)}</pre>
+							<div style={overflowContainerStyle}>
+								<pre>{JSON.stringify(weatherData.airQuality.hourly, null, 2)}</pre>
+							</div>
 						</div>
 					)}
 				</>

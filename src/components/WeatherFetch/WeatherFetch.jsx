@@ -18,6 +18,7 @@ const WeatherFetcher = ({ latitude, longitude, onFetch }) => {
 						'wind_speed_10m',
 						'wind_direction_10m',
 					],
+					hourly: ['relative_humidity_2m', 'precipitation_probability', 'visibility'],
 					daily: [
 						'weather_code',
 						'temperature_2m_max',
@@ -52,6 +53,10 @@ const WeatherFetcher = ({ latitude, longitude, onFetch }) => {
 					const utcOffsetSeconds = weatherResponse.utcOffsetSeconds();
 					const currentWeather = weatherResponse.current();
 					const dailyWeather = weatherResponse.daily();
+					const hourlyWeather = weatherResponse.hourly(); // Fetch hourly data
+
+					const range = (start, stop, step) =>
+						Array.from({ length: (stop - start) / step }, (_, i) => start + i * step);
 
 					// Weather data processing
 					const weatherData = {
@@ -65,6 +70,14 @@ const WeatherFetcher = ({ latitude, longitude, onFetch }) => {
 							surfacePressure: currentWeather.variables(5)?.value(),
 							windSpeed10m: currentWeather.variables(6)?.value(),
 							windDirection10m: currentWeather.variables(7)?.value(),
+						},
+						hourly: {
+							time: range(Number(hourlyWeather.time()), Number(hourlyWeather.timeEnd()), hourlyWeather.interval()).map(
+								(t) => new Date((t + utcOffsetSeconds) * 1000)
+							),
+							relativeHumidity2m: hourlyWeather.variables(0)?.valuesArray(),
+							precipitationProbability: hourlyWeather.variables(1)?.valuesArray(),
+							visibility: hourlyWeather.variables(2)?.valuesArray(),
 						},
 						daily: {
 							time: Array.from(
@@ -114,7 +127,7 @@ const WeatherFetcher = ({ latitude, longitude, onFetch }) => {
 		fetchWeatherData();
 	}, [latitude, longitude, onFetch]); // Fetch when latitude and longitude change
 
-	return null; // No HTML elements are rendered
+	return null; // Consider returning a loading indicator or a message instead
 };
 
 export default WeatherFetcher;
