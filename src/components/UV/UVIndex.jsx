@@ -18,9 +18,9 @@ const UVIndex = ({ uvValue, darkMode }) => {
 
 	return (
 		<div className={containerStyle}>
-			<h1 className={'Title ' + textColor}>UV INDEX</h1>
+			<h1 className={`${styles.Title} ${textColor}`}>UV INDEX</h1>
 			<UVChart value={uvValue} />
-			<h2 className={'Level ' + textColor}>{getUVMessage(uvValue)}</h2>
+			<h2 className={`${styles.Level} ${textColor}`}>{getUVMessage(uvValue)}</h2>
 		</div>
 	);
 };

@@ -1,12 +1,15 @@
 import React from 'react';
 import UVIndex from '../src/components/UV/UVIndex';
-import '../styles/globals.css'; // Import the global CSS file
+import AirQuality from '../src/components/AirQuality/AirQuality';
+import '../styles/globals.css';
 
 export default function Main() {
 	return (
 		<div>
-			<UVIndex uvValue={7} darkMode={false} />
-			<UVIndex uvValue={7} darkMode={true} />
+			<AirQuality AQI={150} darkMode={true} />
 		</div>
 	);
 }
+
+//<AirQuality AQI={150} darkMode={false} />
+//<UVIndex uvValue={7} darkMode={false} />;

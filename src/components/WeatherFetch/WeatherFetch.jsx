@@ -5,7 +5,8 @@ const WeatherFetcher = ({ latitude, longitude, onFetch }) => {
 	useEffect(() => {
 		const fetchWeatherData = async () => {
 			if (latitude && longitude) {
-				const params = {
+				// Weather parameters
+				const weatherParams = {
 					latitude,
 					longitude,
 					current: [
@@ -21,66 +22,89 @@ const WeatherFetcher = ({ latitude, longitude, onFetch }) => {
 					timezone: 'auto',
 				};
 
-				const url = 'https://api.open-meteo.com/v1/forecast';
+				const weatherUrl = 'https://api.open-meteo.com/v1/forecast';
+
+				// Air quality parameters
+				const airQualityParams = {
+					latitude,
+					longitude,
+					current: 'us_aqi',
+					hourly: 'us_aqi',
+					timezone: 'auto',
+					forecast_days: 1,
+				};
+
+				const airQualityUrl = 'https://air-quality-api.open-meteo.com/v1/air-quality';
 
 				try {
-					const responses = await fetchWeatherApi(url, params);
+					// Fetching weather data
+					const weatherResponses = await fetchWeatherApi(weatherUrl, weatherParams);
+					const weatherResponse = weatherResponses[0];
+
+					// Fetching air quality data
+					const airQualityResponses = await fetchWeatherApi(airQualityUrl, airQualityParams);
+					const airQualityResponse = airQualityResponses[0];
 
 					// Helper function to form time ranges
 					const range = (start, stop, step) =>
 						Array.from({ length: (stop - start) / step }, (_, i) => start + i * step);
 
-					// Assuming the responses have an array format
-					const response = responses[0];
+					// Weather data processing
+					const utcOffsetSeconds = weatherResponse.utcOffsetSeconds();
+					const currentWeather = weatherResponse.current();
+					const dailyWeather = weatherResponse.daily();
 
-					// Attributes for timezone and location
-					const utcOffsetSeconds = response.utcOffsetSeconds();
-					const timezone = response.timezone();
-					const timezoneAbbreviation = response.timezoneAbbreviation();
-					const latitude = response.latitude();
-					const longitude = response.longitude();
-
-					const current = response.current();
-					const daily = response.daily();
-
-					// Note: The order of weather variables in the URL query and the indices below need to match!
 					const weatherData = {
 						current: {
-							time: new Date((Number(current.time()) + utcOffsetSeconds) * 1000),
-							temperature2m: current.variables(0).value(),
-							relativeHumidity2m: current.variables(1).value(),
-							precipitation: current.variables(2).value(),
-							cloudCover: current.variables(3).value(),
-							surfacePressure: current.variables(4).value(),
-							windSpeed10m: current.variables(5).value(),
-							windDirection10m: current.variables(6).value(),
+							time: new Date((Number(currentWeather.time()) + utcOffsetSeconds) * 1000),
+							temperature2m: currentWeather.variables(0).value(),
+							relativeHumidity2m: currentWeather.variables(1).value(),
+							precipitation: currentWeather.variables(2).value(),
+							cloudCover: currentWeather.variables(3).value(),
+							surfacePressure: currentWeather.variables(4).value(),
+							windSpeed10m: currentWeather.variables(5).value(),
+							windDirection10m: currentWeather.variables(6).value(),
 						},
 						daily: {
-							time: range(Number(daily.time()), Number(daily.timeEnd()), daily.interval()).map(
+							time: range(Number(dailyWeather.time()), Number(dailyWeather.timeEnd()), dailyWeather.interval()).map(
 								(t) => new Date((t + utcOffsetSeconds) * 1000)
 							),
-							weatherCode: daily.variables(0).valuesArray(),
-							temperature2mMax: daily.variables(1).valuesArray(),
-							temperature2mMin: daily.variables(2).valuesArray(),
-							uvIndexMax: daily.variables(3).valuesArray(),
+							weatherCode: dailyWeather.variables(0).valuesArray(),
+							temperature2mMax: dailyWeather.variables(1).valuesArray(),
+							temperature2mMin: dailyWeather.variables(2).valuesArray(),
+							uvIndexMax: dailyWeather.variables(3).valuesArray(),
 						},
 					};
 
-					// Pass the processed weather data back to the Main component
-					onFetch(weatherData);
+					// Air quality data processing
+					const currentAirQuality = airQualityResponse.current();
+					const hourlyAirQuality = airQualityResponse.hourly();
 
-					// Log daily weather data
-					for (let i = 0; i < weatherData.daily.time.length; i++) {
-						console.log(
-							weatherData.daily.time[i].toISOString(),
-							weatherData.daily.weatherCode[i],
-							weatherData.daily.temperature2mMax[i],
-							weatherData.daily.temperature2mMin[i],
-							weatherData.daily.uvIndexMax[i]
-						);
-					}
+					const airQualityData = {
+						current: {
+							time: new Date((Number(currentAirQuality.time()) + utcOffsetSeconds) * 1000),
+							usAqi: currentAirQuality.variables(0).value(),
+						},
+						hourly: {
+							time: range(
+								Number(hourlyAirQuality.time()),
+								Number(hourlyAirQuality.timeEnd()),
+								hourlyAirQuality.interval()
+							).map((t) => new Date((t + utcOffsetSeconds) * 1000)),
+							usAqi: hourlyAirQuality.variables(0).valuesArray(),
+						},
+					};
+
+					// Combine weather and air quality data
+					const combinedData = {
+						weather: weatherData,
+						airQuality: airQualityData,
+					};
+
+					// Pass the processed data back to the Main component
+					onFetch(combinedData);
 				} catch (error) {
-					console.error('Error fetching weather data:', error);
+					console.error('Error fetching data:', error);
 				}
 			}
 		};
