@@ -11,6 +11,17 @@
     }
 }
 
-@media(min-width: 641px) and (max-width:1447px) {}
+@media(min-width: 641px) and (max-width:1447px) {
+    .wrapper {
+        width: 593px;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+
+        .wrapper::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}
 
 @media (min-width: 1448px) {}

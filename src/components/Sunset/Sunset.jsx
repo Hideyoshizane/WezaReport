@@ -13,6 +13,8 @@ const Sunset = ({ sunriseTime, darkMode }) => {
 
 	// Simple function to format ISO date to "HH:MM"
 	const formatISOToTime = (isoString) => {
+		if (!isoString) return 'No Data'; // Check for null or undefined
+
 		const date = new Date(isoString);
 		const hours = date.getHours().toString().padStart(2, '0');
 		const minutes = date.getMinutes().toString().padStart(2, '0');

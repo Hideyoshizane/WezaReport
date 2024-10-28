@@ -55,6 +55,10 @@ export default function Main() {
 							<div style={overflowContainerStyle}>
 								<pre>{JSON.stringify(weatherData.weather.daily, null, 2)}</pre>
 							</div>
+							<h2>Hourly Weather Data</h2>
+							<div style={overflowContainerStyle}>
+								<pre>{JSON.stringify(weatherData.weather.hourly, null, 2)}</pre>
+							</div>
 							<h2>Current Air Quality Data</h2>
 							<div style={overflowContainerStyle}>
 								<pre>{JSON.stringify(weatherData.airQuality.current, null, 2)}</pre>
