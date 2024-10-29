@@ -1,0 +1,262 @@
+.container {
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aquamarine;
+}
+
+.darkText {
+    color: #F5F5F5;
+    padding: 0;
+    margin: 0;
+}
+
+.lightText {
+    color: #112A46;
+    padding: 0;
+    margin: 0;
+}
+
+.sunnyLight {
+    background-color: #FFD147;
+}
+
+.sunnyDark {
+    background-color: #8F6B00;
+}
+
+.cloudyLight {
+    background-color: #C9CFCF;
+}
+
+.cloudyDark {
+    background-color: #576060;
+}
+
+.rainyLight {
+    background-color: #51A3F5;
+}
+
+.rainyDark {
+    background-color: #073D74;
+}
+
+.snowLight {
+    background-color: #B6CBE2;
+}
+
+.snowDark {
+    background-color: #294666;
+}
+
+
+.snowstormLight {
+    background-color: #7CA2CB;
+}
+
+.snowstormDark {
+    background-color: #1D3249;
+}
+
+.stormLight {
+    background-color: #515C67;
+}
+
+.stormDark {
+    background-color: #24292E;
+}
+
+@media (max-width:640px) {
+
+    .container {
+        width: 343px;
+        height: 184px;
+        box-sizing: border-box;
+    }
+
+    .iconSize {
+        width: 96px;
+        height: 96px;
+        margin-top: 16px;
+    }
+
+    .firstRow {
+        display: flex;
+        margin-top: 9px;
+        margin-left: -42px;
+    }
+
+    .titleWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 16px;
+        margin-left: 16px;
+    }
+
+    .Title {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .Text {
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+    .secondRow {
+        display: flex;
+        align-items: flex-end;
+        box-sizing: border-box;
+    }
+
+    .max {
+        font-size: 32px;
+        font-weight: 700;
+        position: relative;
+        margin-left: -50px;
+    }
+
+    .low {
+        font-size: 20px;
+        font-weight: 300;
+        transform: translateX(33px);
+    }
+
+    .apparentTemp {
+        font-size: 20px;
+        font-weight: 300;
+        transform: translateX(49px);
+    }
+
+}
+
+@media(min-width: 641px) and (max-width:1447px) {
+
+    .container {
+        width: 593px;
+        height: 256px;
+        box-sizing: border-box;
+    }
+
+    .iconSize {
+        width: 176px;
+        height: 176px;
+    }
+
+    .firstRow {
+        display: flex;
+        margin-left: -173px;
+        margin-top: -7px;
+    }
+
+    .titleWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-left: 24px;
+    }
+
+    .Title {
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .Text {
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    .secondRow {
+        display: flex;
+        align-items: flex-end;
+        gap: 16px;
+        box-sizing: border-box;
+        margin-left: 173px;
+        margin-top: -52px;
+    }
+
+    .max {
+        font-size: 40px;
+        font-weight: 700;
+    }
+
+    .low {
+        font-size: 24px;
+        font-weight: 300;
+    }
+
+    .apparentTemp {
+        font-size: 24px;
+        font-weight: 300;
+        margin-left: 23px;
+    }
+}
+
+@media (min-width: 1448px) {
+
+    .container {
+        width: 445px;
+        height: 288px;
+        box-sizing: border-box;
+    }
+
+    .iconSize {
+        width: 176px;
+        height: 176px;
+        margin-left: -10px;
+    }
+
+    .firstRow {
+        display: flex;
+        margin-top: 9px;
+    }
+
+    .titleWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 16px;
+        margin-left: 24px;
+    }
+
+    .Title {
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .Text {
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    .secondRow {
+        display: flex;
+        align-items: flex-end;
+        gap: 24px;
+        margin-top: 32px;
+        margin-bottom: 7px;
+        width: 380px;
+        box-sizing: border-box;
+    }
+
+    .max {
+        font-size: 40px;
+        font-weight: 700;
+        margin-left: -9px;
+    }
+
+    .low {
+        font-size: 24px;
+        font-weight: 300;
+    }
+
+    .apparentTemp {
+        font-size: 24px;
+        font-weight: 300;
+        margin-left: 23px;
+    }
+
+}
