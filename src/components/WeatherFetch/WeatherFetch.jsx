@@ -10,7 +10,7 @@ const WeatherFetcher = ({ latitude, longitude, onFetch }) => {
 			const weatherData = await weatherResponse.json();
 
 			// Fetch air quality data
-			const airQualityUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${latitude}&longitude=${longitude}&current=us_aqi`;
+			const airQualityUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${latitude}&longitude=${longitude}&current=us_aqi&timezone=auto&forecast_days=1`;
 			const airQualityResponse = await fetch(airQualityUrl);
 			const airQualityData = await airQualityResponse.json();
 

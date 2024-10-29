@@ -5,31 +5,25 @@ import styles from './Today.module.css';
 import { useWeatherIcon } from '@/utils/weatherIcons';
 
 const Today = ({ time, code, maxTemp, lowTemp, apparentTemp, darkMode, usaMode }) => {
+	const convertTemp = (temp) => Math.round(usaMode ? temp * (9 / 5) + 32 : temp);
+
 	const dayOfWeek = new Date(time).toLocaleDateString('en-US', { weekday: 'long' });
 	const timeConverted = new Date(time).toISOString().slice(11, 16);
 
-	maxTemp = Math.round(Number(maxTemp));
-	lowTemp = Math.round(Number(lowTemp));
-	apparentTemp = Math.round(Number(apparentTemp));
-
-	// Convert Celsius to Fahrenheit if usaMode is true
-	if (usaMode) {
-		maxTemp = Math.round(maxTemp * (9 / 5) + 32);
-		lowTemp = Math.round(lowTemp * (9 / 5) + 32);
-		apparentTemp = Math.round(apparentTemp * (9 / 5) + 32);
-	}
+	maxTemp = convertTemp(maxTemp);
+	lowTemp = convertTemp(lowTemp);
+	apparentTemp = convertTemp(apparentTemp);
 
 	const { icon, category } = useWeatherIcon(code, darkMode);
 	const capitalizedCategory = category.charAt(0).toUpperCase() + category.slice(1);
 
 	// Combine container and specific styles
-	const containerStyle = `${styles.container} ${styles[`${category}${darkMode ? 'Dark' : 'Light'}`]}`;
-	const textColor =
-		containerStyle === `${styles.container} ${styles.stormLight}`
-			? styles.darkText
-			: darkMode
-			? styles.darkText
-			: styles.lightText;
+	const getContainerStyle = () => `${styles.container} ${styles[`${category}${darkMode ? 'Dark' : 'Light'}`]}`;
+	const getTextColor = () =>
+		category === 'storm' && !darkMode ? styles.darkText : darkMode ? styles.darkText : styles.lightText;
+
+	const containerStyle = getContainerStyle();
+	const textColor = getTextColor();
 
 	return (
 		<div className={containerStyle}>

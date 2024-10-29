@@ -6,7 +6,7 @@ import styles from './Sunset.module.css';
 import lightIcon from '../../../public/assets/icons/light/sunset.png';
 import darkIcon from '../../../public/assets/icons/dark/sunset.png';
 
-const Sunset = ({ sunriseTime, darkMode }) => {
+const Sunset = ({ sunsetTime, darkMode }) => {
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;
 	const textColor = darkMode ? styles.darkText : styles.lightText;
 	const icon = darkMode ? darkIcon : lightIcon;
@@ -28,7 +28,7 @@ const Sunset = ({ sunriseTime, darkMode }) => {
 			</div>
 			<div className={styles.titleWrapper}>
 				<Image src={icon} alt="Sunrise Icon" className={styles.iconSize} priority />
-				<h2 className={`${styles.Text} ${textColor}`}>{formatISOToTime(sunriseTime)}</h2>
+				<h2 className={`${styles.Text} ${textColor}`}>{formatISOToTime(sunsetTime)}</h2>
 			</div>
 		</div>
 	);

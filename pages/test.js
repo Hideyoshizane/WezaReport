@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import UVIndex from '@/components/UVIndex/UVIndex';
 import AirQuality from '@/components/AirQuality/AirQuality';
 import RainProbability from '@/components/RainProbability/RainProbability';
@@ -12,13 +13,31 @@ import WeatherCard from '@/components/WeatherCard/WeatherCard';
 import ForecastGroup from '@/components/ForecastGroup/ForecastGroup';
 import TemperatureChart from '@/components/TemperatureChart/TemperatureChart';
 import Today from '@/components/Today/Today';
+import Location from '@/components/Location/Location';
+import Search from '@/components/Search/Search';
 
 import placeholderData from '../placeholder.json';
+import Airquality from '../Airquality.json';
 
 import '../styles/globals.css';
 
 export default function Main() {
-	return <div></div>;
+	const [latitude, setLatitude] = useState('');
+	const [longitude, setLongitude] = useState('');
+
+	const handleLatitudeChange = (newLatitude) => {
+		setLatitude(newLatitude);
+	};
+
+	const handleLongitudeChange = (newLongitude) => {
+		setLongitude(newLongitude);
+	};
+
+	return (
+		<div>
+			<Search darkMode={true} onLatitudeChange={handleLatitudeChange} onLongitudeChange={handleLongitudeChange} />
+		</div>
+	);
 }
 /*<Today
 	time={placeholderData.current.time}
@@ -28,19 +47,32 @@ export default function Main() {
 	apparentTemp={placeholderData.current.apparent_temperature}
 	darkMode={false}
 	usaMode={false}
-/>*/
-/*	<TemperatureChart
-time={Object.hourly.time.slice(0, 24)}
-temperature={Object.temperature_2m.slice(0, 24)}
-darkMode={false}
-usaMode={false}
+/> OK*/
+/*		<TemperatureChart
+				time={placeholderData.hourly.time.slice(0, 24)}
+				temperature={placeholderData.hourly.temperature_2m.slice(0, 24)}
+				darkMode={false}
+				usaMode={false}
+			/>
 />;*/
-//<Sunrise sunriseTime={'2024-10-25T14:30:00Z'} darkMode={true} />;
-//<Pressure pressurehPa={1016} darkMode={true} />;
-//<Visibility distance={7} darkMode={true} />;
-//<UVIndex uvValue={7} darkMode={false} />;
-//<AirQuality AQI={150} darkMode={false} />
-//<RainProbability percentage={15} darkMode={false} />
-//<Humidity percentage={100} darkMode={true} />
-//<Wind windSpeed={100} windDirection={150} darkMode={false} usaMode={false} />;
-//<ForecastGroup currentDate={'2024-10-26T14:30:00Z'} WeatherData={Object} darkMode={false} usaMode={false} />;
+// <Sunrise sunriseTime={placeholderData.daily.sunrise[0]} darkMode={false} />;
+// <Sunset sunsetTime={placeholderData.daily.sunset[0]} darkMode={false} />;
+//<Pressure pressurehPa={placeholderData.current.surface_pressure} darkMode={true} />;
+//<Visibility hourly={placeholderData.hourly.time} visibility={placeholderData.hourly.visibility} darkMode={true} />
+// <UVIndex uvValue={placeholderData.daily.uv_index_max[0]} darkMode={false} />;
+//<AirQuality AQI={Airquality.current.us_aqi} darkMode={false} />
+// <RainProbability percentage={placeholderData.daily.precipitation_probability_max[0]} darkMode={false} />
+// <Humidity percentage={placeholderData.current.relative_humidity_2m} darkMode={true} />
+/*			<Wind
+				windSpeed={placeholderData.current.wind_speed_10m}
+				windDirection={placeholderData.current.wind_direction_10m}
+				darkMode={false}
+				usaMode={false}
+			/>*/
+/*			<ForecastGroup
+				currentDate={placeholderData.current.time}
+				WeatherData={placeholderData.daily}
+				darkMode={false}
+				usaMode={true}
+			/>*/
+//<Location latitude={placeholderData.latitude} longitude={placeholderData.longitude} darkMode={false} />

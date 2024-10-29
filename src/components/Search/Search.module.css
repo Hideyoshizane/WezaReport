@@ -1,0 +1,220 @@
+.parentDiv {
+    position: relative;
+    width: 445px;
+}
+
+.darkContainer,
+.lightContainer {
+
+    border-radius: 50px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 445px;
+    min-height: 64px;
+    max-height: 64px;
+    height: auto;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.darkContainer.expanded,
+.lightContainer.expanded {
+    max-height: 320px;
+}
+
+.darkContainer {
+    background-color: #6C6C6C;
+}
+
+.lightContainer {
+    background-color: #F5F5F5;
+}
+
+.darkText {
+    color: #F5F5F5;
+    padding: 0;
+    margin: 0;
+}
+
+.lightText {
+    color: #112A46;
+    padding: 0;
+    margin: 0;
+}
+
+.darkText::placeholder {
+    color: #F5F5F5;
+}
+
+.lightText::placeholder {
+    color: #112A46;
+}
+
+
+.searchInput {
+    background-color: transparent;
+    border: none;
+}
+
+.searchInput:focus {
+    border: none;
+    outline: none;
+}
+
+
+@media (max-width:640px) {
+    .parentDiv {
+        position: relative;
+        width: 343px;
+    }
+
+    .darkContainer,
+    .lightContainer {
+
+        border-radius: 50px;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        width: 343px;
+        min-height: 48px;
+        height: auto;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+    }
+
+    .iconSize {
+        width: 36px;
+        height: 36px;
+    }
+
+    .searchInput {
+        font-size: 24px;
+        font-weight: 300;
+        width: 180px;
+    }
+
+    .iconInput {
+        margin-top: 8px;
+        display: flex;
+        gap: 8px;
+        transform: translate(-36px, -2px);
+    }
+
+    .suggestionsList {
+        padding: 0;
+        margin: 0;
+        width: 180px;
+        height: auto;
+        transform: translateX(-20px);
+    }
+
+
+    .suggestionItem {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-weight: 300;
+        height: auto;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+}
+
+@media(min-width: 641px) and (max-width:1447px) {
+    .parentDiv {
+        position: relative;
+        width: 281px;
+    }
+
+    .darkContainer,
+    .lightContainer {
+
+        border-radius: 50px;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        width: 281px;
+        min-height: 48px;
+        height: auto;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+    }
+
+    .iconSize {
+        width: 36px;
+        height: 36px;
+    }
+
+    .searchInput {
+        font-size: 24px;
+        font-weight: 300;
+        width: 180px;
+    }
+
+    .iconInput {
+        margin-top: 8px;
+        display: flex;
+        gap: 8px;
+    }
+
+    .suggestionsList {
+        padding: 0;
+        margin: 0;
+        width: 180px;
+        margin-left: 56px;
+    }
+
+
+    .suggestionItem {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-weight: 300;
+        height: 32px;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+}
+
+@media (min-width: 1448px) {
+
+    .searchInput {
+        font-size: 24px;
+        font-weight: 300;
+    }
+
+    .suggestionsList {
+        padding: 0;
+        margin: 0;
+        width: 292px;
+        margin-left: 56px;
+    }
+
+
+    .suggestionItem {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-weight: 300;
+        height: 32px;
+        margin-bottom: 8px;
+    }
+
+    .iconInput {
+        margin-top: 8px;
+        display: flex;
+        gap: 8px;
+    }
+
+    .iconSize {
+        width: 48px;
+        height: 48px;
+    }
+}
