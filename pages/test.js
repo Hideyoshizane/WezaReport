@@ -15,6 +15,7 @@ import TemperatureChart from '@/components/TemperatureChart/TemperatureChart';
 import Today from '@/components/Today/Today';
 import Location from '@/components/Location/Location';
 import Search from '@/components/Search/Search';
+import UsaModeToggle from '@/components/UsaModeToggle/UsaModeToggle';
 
 import placeholderData from '../placeholder.json';
 import Airquality from '../Airquality.json';
@@ -24,6 +25,8 @@ import '../styles/globals.css';
 export default function Main() {
 	const [latitude, setLatitude] = useState('');
 	const [longitude, setLongitude] = useState('');
+	const [darkMode, setDarkMode] = useState(false);
+	const [usaMode, setUsaMode] = useState(false);
 
 	const handleLatitudeChange = (newLatitude) => {
 		setLatitude(newLatitude);
@@ -33,18 +36,28 @@ export default function Main() {
 		setLongitude(newLongitude);
 	};
 
+	const handleDarkModeChange = (newDarkMode) => {
+		setDarkMode(newDarkMode);
+	};
+
+	const handleUsaModeChange = (newUsaMode) => {
+		setUsaMode(newUsaMode);
+	};
+
 	return (
 		<div>
-			<Search darkMode={true} onLatitudeChange={handleLatitudeChange} onLongitudeChange={handleLongitudeChange} />
+			<UsaModeToggle onUsaModeChange={handleUsaModeChange} usaMode={false} darkMode={true} />
+			<UsaModeToggle onUsaModeChange={handleUsaModeChange} usaMode={false} darkMode={false} />
 		</div>
 	);
 }
+//<Search darkMode={true} onLatitudeChange={handleLatitudeChange} onLongitudeChange={handleLongitudeChange} />
 /*<Today
-	time={placeholderData.current.time}
-	code={placeholderData.current.weather_code}
-	maxTemp={placeholderData.daily.temperature_2m_max[0]}
-	lowTemp={placeholderData.daily.temperature_2m_min[0]}
-	apparentTemp={placeholderData.current.apparent_temperature}
+time={placeholderData.current.time}
+code={placeholderData.current.weather_code}
+maxTemp={placeholderData.daily.temperature_2m_max[0]}
+lowTemp={placeholderData.daily.temperature_2m_min[0]}
+apparentTemp={placeholderData.current.apparent_temperature}
 	darkMode={false}
 	usaMode={false}
 /> OK*/
@@ -67,7 +80,7 @@ export default function Main() {
 				windSpeed={placeholderData.current.wind_speed_10m}
 				windDirection={placeholderData.current.wind_direction_10m}
 				darkMode={false}
-				usaMode={false}
+				c
 			/>*/
 /*			<ForecastGroup
 				currentDate={placeholderData.current.time}
