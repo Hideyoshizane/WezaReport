@@ -1,24 +1,10 @@
 import React, { useState } from 'react';
 
-import UVIndex from '@/components/UVIndex/UVIndex';
-import AirQuality from '@/components/AirQuality/AirQuality';
-import RainProbability from '@/components/RainProbability/RainProbability';
-import Humidity from '@/components/Humidity/Humidity';
-import Wind from '@/components/Wind/Wind';
-import Visibility from '@/components/Visibility/Visibility';
-import Pressure from '@/components/Pressure/Pressure';
-import Sunrise from '@/components/Sunrise/Sunrise';
-import Sunset from '@/components/Sunset/Sunset';
-import WeatherCard from '@/components/WeatherCard/WeatherCard';
-import ForecastGroup from '@/components/ForecastGroup/ForecastGroup';
-import TemperatureChart from '@/components/TemperatureChart/TemperatureChart';
-import Today from '@/components/Today/Today';
-import Location from '@/components/Location/Location';
-import Search from '@/components/Search/Search';
-import UsaModeToggle from '@/components/UsaModeToggle/UsaModeToggle';
-import DarkModeToggle from '@/components/DarkModeToggle/DarkModeToggle';
+import Card from '@/components/Card/Card';
+import BackgroundImage from '@/components/BackgroundImage/BackgroundImage';
 
 import placeholderData from '../placeholder.json';
+
 import Airquality from '../Airquality.json';
 
 import '../styles/globals.css';
@@ -26,7 +12,7 @@ import '../styles/globals.css';
 export default function Main() {
 	const [latitude, setLatitude] = useState('');
 	const [longitude, setLongitude] = useState('');
-	const [darkMode, setDarkMode] = useState(false);
+	const [darkMode, setDarkMode] = useState(true);
 	const [usaMode, setUsaMode] = useState(false);
 
 	const handleLatitudeChange = (newLatitude) => {
@@ -47,20 +33,30 @@ export default function Main() {
 
 	return (
 		<div>
-			<div
-				style={{
-					backgroundColor: '#000000',
-					width: '500px',
-					height: '900px',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-				}}>
-				<DarkModeToggle onDarkModeChange={handleDarkModeChange} darkMode={darkMode} />
-			</div>
+			<Card
+				dataObject={placeholderData}
+				airObject={Airquality}
+				onSetLatitude={handleLatitudeChange}
+				onSetLongitude={handleLongitudeChange}
+				onSetDarkMode={handleDarkModeChange}
+				onSetUsaMode={handleUsaModeChange}
+				usaMode={usaMode}
+				darkMode={darkMode}
+			/>
 		</div>
 	);
 }
+
+//<BackgroundImage code={placeholderData.current.weather_code} darkMode={true} />
+/*	<Menu
+		onLatitudeChange={handleLatitudeChange}
+		onLongitudeChange={handleLongitudeChange}
+		onDarkModeChange={handleDarkModeChange}
+		onUsaModeChange={handleUsaModeChange}
+		darkMode={darkMode}
+		usaMode={usaMode}
+	/>;*/
+//<DarkModeToggle onDarkModeChange={handleDarkModeChange} darkMode={darkMode} />
 //<UsaModeToggle onUsaModeChange={handleUsaModeChange} usaMode={usaMode} darkMode={false} />
 //<Search darkMode={true} onLatitudeChange={handleLatitudeChange} onLongitudeChange={handleLongitudeChange} />
 /*<Today

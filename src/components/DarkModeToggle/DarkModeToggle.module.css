@@ -115,6 +115,7 @@
     .lightContainer {
         width: 64px;
         height: 64px;
+        background-color: #000000;
     }
 
     .NightType,
@@ -142,6 +143,7 @@
     .lightContainer {
         width: 64px;
         height: 64px;
+        background-color: #000000;
     }
 
     .NightType,

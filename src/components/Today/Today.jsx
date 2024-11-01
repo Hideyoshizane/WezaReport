@@ -3,16 +3,15 @@ import Image from 'next/image';
 
 import styles from './Today.module.css';
 import { useWeatherIcon } from '@/utils/weatherIcons';
+import { convertTemp, roundTemperature } from '@/utils/temperatureUtils';
 
 const Today = ({ time, code, maxTemp, lowTemp, apparentTemp, darkMode, usaMode }) => {
-	const convertTemp = (temp) => Math.round(usaMode ? temp * (9 / 5) + 32 : temp);
-
 	const dayOfWeek = new Date(time).toLocaleDateString('en-US', { weekday: 'long' });
 	const timeConverted = new Date(time).toISOString().slice(11, 16);
 
-	maxTemp = convertTemp(maxTemp);
-	lowTemp = convertTemp(lowTemp);
-	apparentTemp = convertTemp(apparentTemp);
+	maxTemp = usaMode ? convertTemp(maxTemp) : roundTemperature(maxTemp);
+	lowTemp = usaMode ? convertTemp(lowTemp) : roundTemperature(lowTemp);
+	apparentTemp = usaMode ? convertTemp(apparentTemp) : roundTemperature(apparentTemp);
 
 	const { icon, category } = useWeatherIcon(code, darkMode);
 	const capitalizedCategory = category.charAt(0).toUpperCase() + category.slice(1);

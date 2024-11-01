@@ -29,8 +29,8 @@ const ForecastGroup = ({ currentDate, WeatherData, darkMode, usaMode }) => {
 							key={key}
 							day={daysArray[index + 1]}
 							code={code}
-							maxTemp={usaMode ? (maxTemp * 9) / 5 + 32 : maxTemp} // Convert to F if usaMode is true
-							lowTemp={usaMode ? (lowTemp * 9) / 5 + 32 : lowTemp} // Convert to F if usaMode is true
+							maxTemp={maxTemp}
+							lowTemp={lowTemp}
 							darkMode={darkMode}
 							usaMode={usaMode}
 						/>

@@ -2,18 +2,14 @@ import React from 'react';
 import Image from 'next/image';
 
 import { useWeatherIcon } from '@/utils/weatherIcons';
+import { convertTemp, roundTemperature } from '@/utils/temperatureUtils';
 
 import styles from './WeatherCard.module.css';
 
 const WeatherCard = ({ day, code, maxTemp, lowTemp, darkMode, usaMode }) => {
-	maxTemp = Number(maxTemp);
-	lowTemp = Number(lowTemp);
+	maxTemp = usaMode ? convertTemp(maxTemp) : roundTemperature(maxTemp);
+	lowTemp = usaMode ? convertTemp(lowTemp) : roundTemperature(lowTemp);
 
-	// Convert Celsius to Fahrenheit if usaMode is true
-	if (usaMode) {
-		maxTemp = Math.round(maxTemp * (9 / 5) + 32);
-		lowTemp = Math.round(lowTemp * (9 / 5) + 32);
-	}
 	const { icon, category } = useWeatherIcon(code, darkMode);
 
 	// Combine container and specific styles
