@@ -1,0 +1,180 @@
+.darkContainer,
+.lightContainer {
+    border-radius: 100px;
+    width: 128px;
+    height: 64px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    transition: background-color 0.3s ease-in-out;
+}
+
+.darkIconColor,
+.lightIconColor {
+    width: 64px;
+    height: 64px;
+    border-radius: 100px;
+}
+
+.iconSize {
+    margin-top: 4px;
+    margin-left: 4px;
+    width: 56px;
+    height: 56px;
+}
+
+.darkContainer {
+    background-color: #6C6C6C;
+}
+
+.lightContainer {
+    background-color: #F5F5F5;
+}
+
+.darkIconColor {
+    background-color: #161203;
+}
+
+.lightIconColor {
+    background-color: #FFD147;
+}
+
+
+.darkText {
+    color: #F5F5F5;
+
+}
+
+.lightText {
+    color: #112A46;
+
+}
+
+.textDiv {
+    margin-left: 8px;
+}
+
+.Text {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.slideInLeft {
+    animation: slideInLeft 0.5s forwards;
+}
+
+.slideInRight {
+    animation: slideInRight 0.5s forwards;
+}
+
+@media (max-width:640px) {
+
+    .slideInLeft,
+    .slideInRight {
+        animation: fadeIn 0.5s forwards;
+    }
+
+    .darkContainer,
+    .lightContainer {
+        width: 64px;
+        height: 64px;
+    }
+
+    .NightType,
+    .LightType {
+        font-size: 16px;
+        font-weight: 400;
+        display: none;
+    }
+
+
+    .Text {
+        display: block;
+        margin-left: 8px;
+    }
+}
+
+@media(min-width: 641px) and (max-width:1447px) {
+
+    .slideInLeft,
+    .slideInRight {
+        animation: fadeIn 0.5s forwards;
+    }
+
+    .darkContainer,
+    .lightContainer {
+        width: 64px;
+        height: 64px;
+    }
+
+    .NightType,
+    .LightType {
+        font-size: 16px;
+        font-weight: 400;
+        display: none;
+    }
+
+
+    .Text {
+        display: block;
+        margin-left: 8px;
+    }
+}
+
+@media (min-width: 1448px) {
+
+    .NightType,
+    .LightType {
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .NightType {
+        margin-left: 16px;
+    }
+
+    .LightType {
+        margin-right: 24px;
+    }
+
+    .Text {
+        display: none;
+    }
+}

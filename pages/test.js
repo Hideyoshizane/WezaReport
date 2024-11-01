@@ -16,6 +16,7 @@ import Today from '@/components/Today/Today';
 import Location from '@/components/Location/Location';
 import Search from '@/components/Search/Search';
 import UsaModeToggle from '@/components/UsaModeToggle/UsaModeToggle';
+import DarkModeToggle from '@/components/DarkModeToggle/DarkModeToggle';
 
 import placeholderData from '../placeholder.json';
 import Airquality from '../Airquality.json';
@@ -36,21 +37,31 @@ export default function Main() {
 		setLongitude(newLongitude);
 	};
 
-	const handleDarkModeChange = (newDarkMode) => {
-		setDarkMode(newDarkMode);
+	const handleDarkModeChange = () => {
+		setDarkMode((prevDarkMode) => !prevDarkMode);
 	};
 
-	const handleUsaModeChange = (newUsaMode) => {
-		setUsaMode(newUsaMode);
+	const handleUsaModeChange = () => {
+		setUsaMode((prevUsaMode) => !prevUsaMode);
 	};
 
 	return (
 		<div>
-			<UsaModeToggle onUsaModeChange={handleUsaModeChange} usaMode={false} darkMode={true} />
-			<UsaModeToggle onUsaModeChange={handleUsaModeChange} usaMode={false} darkMode={false} />
+			<div
+				style={{
+					backgroundColor: '#000000',
+					width: '500px',
+					height: '900px',
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+				}}>
+				<DarkModeToggle onDarkModeChange={handleDarkModeChange} darkMode={darkMode} />
+			</div>
 		</div>
 	);
 }
+//<UsaModeToggle onUsaModeChange={handleUsaModeChange} usaMode={usaMode} darkMode={false} />
 //<Search darkMode={true} onLatitudeChange={handleLatitudeChange} onLongitudeChange={handleLongitudeChange} />
 /*<Today
 time={placeholderData.current.time}
