@@ -3,7 +3,6 @@
     box-shadow: 0px 4px 4px 0px #00000040;
     backdrop-filter: blur(25px);
     border-radius: 25px 0 0px 25px;
-    height: 100vh;
 }
 
 .backgroundLight {
@@ -11,7 +10,6 @@
     box-shadow: 0px 4px 4px 0px #00000040;
     backdrop-filter: blur(25px);
     border-radius: 25px 0 0px 25px;
-    height: 100vh;
 }
 
 .darkText {
@@ -26,14 +24,11 @@
     margin: 0;
 }
 
-
-
-
-
-.flex {
+.division {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0) !important;
     gap: 26px;
 }
 
@@ -175,19 +170,26 @@
 }
 
 @media (min-width: 1448px) {
-    .settings {
-        display: none;
-    }
 
     .backgroundDark,
     .backgroundLight {
         background-color: transparent;
         box-shadow: none;
-        backdrop-filter: blur(0px);
+        backdrop-filter: none;
         transition: none;
+        height: auto;
     }
 
-    .iconSize {
+
+    .iconSize,
+    .overlay,
+    .settings {
         display: none;
+    }
+
+    .open,
+    .closed {
+        background-color: transparent;
+        animation: none;
     }
 }

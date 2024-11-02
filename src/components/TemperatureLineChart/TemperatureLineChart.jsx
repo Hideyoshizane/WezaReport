@@ -9,12 +9,13 @@ import {
 	Title,
 	Tooltip,
 	Legend,
+	Filler,
 } from 'chart.js';
 
 import styles from './TemperatureLineChart.module.css';
 
 // Register necessary components
-Chart.register(LineElement, PointElement, LineController, CategoryScale, LinearScale, Title, Tooltip, Legend);
+Chart.register(LineElement, PointElement, LineController, CategoryScale, LinearScale, Title, Tooltip, Legend, Filler);
 
 const TemperatureLineChart = ({ time, convertedTemperature, darkMode, usaMode }) => {
 	const chartRef = useRef(null);

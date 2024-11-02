@@ -36,7 +36,7 @@ const Menu = ({ onLatitudeChange, onLongitudeChange, onDarkModeChange, onUsaMode
 		<>
 			{isOpen && <div className={styles.overlay} onClick={toggleMenu}></div>}
 			<div className={`${containerStyle} ${isOpen ? styles.open : styles.closed}`}>
-				<div className={styles.flex}>
+				<div className={styles.division}>
 					<div className={styles.settings}>
 						<h2 className={textColor}>Settings</h2>
 						<Image src={icon} alt="Menu Icon" className={styles.iconSize} onClick={toggleMenu} priority />

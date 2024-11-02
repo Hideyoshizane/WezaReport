@@ -1,27 +1,119 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Card from '@/components/Card/Card';
 import BackgroundImage from '@/components/BackgroundImage/BackgroundImage';
 
-import placeholderData from '../placeholder.json';
-
-import Airquality from '../Airquality.json';
-
 import '../styles/globals.css';
+
+import AirQualityPlaceholder from '../Airquality.json';
+import WeatherPlaceholder from '../placeholder.json';
 
 export default function Main() {
 	const [latitude, setLatitude] = useState('');
 	const [longitude, setLongitude] = useState('');
-	const [darkMode, setDarkMode] = useState(true);
-	const [usaMode, setUsaMode] = useState(false);
 
-	const handleLatitudeChange = (newLatitude) => {
-		setLatitude(newLatitude);
+	const [darkMode, setDarkMode] = useState(() => {
+		if (typeof window !== 'undefined') {
+			return JSON.parse(localStorage.getItem('darkMode')) || true;
+		}
+		return true; // default value
+	});
+	const [usaMode, setUsaMode] = useState(() => {
+		if (typeof window !== 'undefined') {
+			return JSON.parse(localStorage.getItem('usaMode')) || false;
+		}
+		return false; // default value
+	});
+
+	const [weatherData, setWeatherData] = useState(null);
+	const [airQualityData, setAirQualityData] = useState(null);
+
+	// Default coordinates
+	const DEFAULT_LATITUDE = 40.7128;
+	const DEFAULT_LONGITUDE = -74.006;
+
+	// Fetch weather and air quality data based on latitude and longitude
+	const fetchWeatherAndAirQualityData = async (lat, lon) => {
+		const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,cloud_cover,surface_pressure,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,visibility&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,precipitation_probability_max&timezone=auto`;
+		const airQualityUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=us_aqi&timezone=auto&forecast_days=1`;
+
+		try {
+			const weatherResponse = await fetch(weatherUrl);
+			const airQualityResponse = await fetch(airQualityUrl);
+
+			if (!weatherResponse.ok || !airQualityResponse.ok) {
+				throw new Error('Failed to fetch data');
+			}
+
+			const weatherData = await weatherResponse.json();
+			const airQualityData = await airQualityResponse.json();
+
+			setWeatherData(weatherData);
+			setAirQualityData(airQualityData);
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
 	};
 
-	const handleLongitudeChange = (newLongitude) => {
-		setLongitude(newLongitude);
-	};
+	useEffect(() => {
+		const initializeLocation = async () => {
+			let lat, lon;
+
+			if (navigator.geolocation) {
+				await new Promise((resolve) => {
+					navigator.geolocation.getCurrentPosition(
+						(position) => {
+							lat = position.coords.latitude;
+							lon = position.coords.longitude;
+							setLatitude(lat);
+							setLongitude(lon);
+							localStorage.setItem('latitude', lat);
+							localStorage.setItem('longitude', lon);
+							resolve();
+						},
+						() => {
+							const savedLatitude = localStorage.getItem('latitude');
+							const savedLongitude = localStorage.getItem('longitude');
+							if (savedLatitude && savedLongitude) {
+								lat = savedLatitude;
+								lon = savedLongitude;
+								setLatitude(lat);
+								setLongitude(lon);
+							} else {
+								lat = DEFAULT_LATITUDE;
+								lon = DEFAULT_LONGITUDE;
+								setLatitude(lat);
+								setLongitude(lon);
+							}
+							resolve();
+						}
+					);
+				});
+			} else {
+				lat = DEFAULT_LATITUDE;
+				lon = DEFAULT_LONGITUDE;
+				setLatitude(lat);
+				setLongitude(lon);
+			}
+		};
+
+		initializeLocation();
+	}, []);
+
+	// Re-fetch data whenever latitude or longitude changes
+	useEffect(() => {
+		if (latitude && longitude) {
+			//fetchWeatherAndAirQualityData(latitude, longitude);
+		}
+	}, [latitude, longitude]);
+
+	useEffect(() => {
+		localStorage.setItem('darkMode', JSON.stringify(darkMode));
+	}, [darkMode]);
+
+	useEffect(() => {
+		localStorage.setItem('usaMode', JSON.stringify(usaMode));
+	}, [usaMode]);
 
 	const handleDarkModeChange = () => {
 		setDarkMode((prevDarkMode) => !prevDarkMode);
@@ -33,66 +125,26 @@ export default function Main() {
 
 	return (
 		<div>
-			<Card
-				dataObject={placeholderData}
-				airObject={Airquality}
-				onSetLatitude={handleLatitudeChange}
-				onSetLongitude={handleLongitudeChange}
-				onSetDarkMode={handleDarkModeChange}
-				onSetUsaMode={handleUsaModeChange}
-				usaMode={usaMode}
-				darkMode={darkMode}
-			/>
+			{WeatherPlaceholder && AirQualityPlaceholder ? (
+				<>
+					<BackgroundImage code={WeatherPlaceholder.current.weather_code} darkMode={darkMode} />
+					<Card
+						dataObject={WeatherPlaceholder}
+						airObject={AirQualityPlaceholder}
+						onSetLatitude={setLatitude}
+						onSetLongitude={setLongitude}
+						onSetDarkMode={handleDarkModeChange}
+						onSetUsaMode={handleUsaModeChange}
+						usaMode={usaMode}
+						darkMode={darkMode}
+					/>
+				</>
+			) : (
+				<p>Loading...</p> // Display a loading message while data is being fetched
+			)}
 		</div>
 	);
 }
 
-//<BackgroundImage code={placeholderData.current.weather_code} darkMode={true} />
-/*	<Menu
-		onLatitudeChange={handleLatitudeChange}
-		onLongitudeChange={handleLongitudeChange}
-		onDarkModeChange={handleDarkModeChange}
-		onUsaModeChange={handleUsaModeChange}
-		darkMode={darkMode}
-		usaMode={usaMode}
-	/>;*/
-//<DarkModeToggle onDarkModeChange={handleDarkModeChange} darkMode={darkMode} />
-//<UsaModeToggle onUsaModeChange={handleUsaModeChange} usaMode={usaMode} darkMode={false} />
-//<Search darkMode={true} onLatitudeChange={handleLatitudeChange} onLongitudeChange={handleLongitudeChange} />
-/*<Today
-time={placeholderData.current.time}
-code={placeholderData.current.weather_code}
-maxTemp={placeholderData.daily.temperature_2m_max[0]}
-lowTemp={placeholderData.daily.temperature_2m_min[0]}
-apparentTemp={placeholderData.current.apparent_temperature}
-	darkMode={false}
-	usaMode={false}
-/> OK*/
-/*		<TemperatureChart
-				time={placeholderData.hourly.time.slice(0, 24)}
-				temperature={placeholderData.hourly.temperature_2m.slice(0, 24)}
-				darkMode={false}
-				usaMode={false}
-			/>
-/>;*/
-// <Sunrise sunriseTime={placeholderData.daily.sunrise[0]} darkMode={false} />;
-// <Sunset sunsetTime={placeholderData.daily.sunset[0]} darkMode={false} />;
-//<Pressure pressurehPa={placeholderData.current.surface_pressure} darkMode={true} />;
-//<Visibility hourly={placeholderData.hourly.time} visibility={placeholderData.hourly.visibility} darkMode={true} />
-// <UVIndex uvValue={placeholderData.daily.uv_index_max[0]} darkMode={false} />;
-//<AirQuality AQI={Airquality.current.us_aqi} darkMode={false} />
-// <RainProbability percentage={placeholderData.daily.precipitation_probability_max[0]} darkMode={false} />
-// <Humidity percentage={placeholderData.current.relative_humidity_2m} darkMode={true} />
-/*			<Wind
-				windSpeed={placeholderData.current.wind_speed_10m}
-				windDirection={placeholderData.current.wind_direction_10m}
-				darkMode={false}
-				c
-			/>*/
-/*			<ForecastGroup
-				currentDate={placeholderData.current.time}
-				WeatherData={placeholderData.daily}
-				darkMode={false}
-				usaMode={true}
-			/>*/
-//<Location latitude={placeholderData.latitude} longitude={placeholderData.longitude} darkMode={false} />
+// dataObject = { weatherData };
+// airObject = { airQualityData };

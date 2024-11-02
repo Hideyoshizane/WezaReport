@@ -8,7 +8,7 @@ const IndexPageComponent = () => {
 	return (
 		<div className={styles.background}>
 			<div className={styles.imageWrapper}>
-				<Image src={indexBackground} alt="A scenic beach image" layout="fill" objectFit="cover" priority />
+				<Image src={indexBackground} alt="A scenic beach image" fill objectFit="cover" priority />
 			</div>
 			<main className={styles.center}>
 				<section style={{ textAlign: 'center' }}>

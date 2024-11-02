@@ -3,6 +3,8 @@ import Image from 'next/image';
 
 import { useWeatherIcon } from '@/utils/weatherIcons';
 
+import styles from './BackgroundImage.module.css';
+
 import sunny from '../../../public/assets/background/sunny.jpg';
 import cloudy from '../../../public/assets/background/cloudy.jpg';
 import rainy from '../../../public/assets/background/rainy.jpg';
@@ -25,15 +27,8 @@ const BackgroundImage = ({ code, darkMode }) => {
 	const backgroundImage = darkMode ? dark : categoryToImage[category];
 
 	return (
-		<div className="container">
-			<Image
-				src={backgroundImage}
-				alt={`${category} background`}
-				layout="fill"
-				priority
-				objectFit="cover" // Ensure the image covers the entire div
-			/>
-			{/* Other content can be placed here */}
+		<div className={styles.container}>
+			<Image src={backgroundImage} alt={`${category} background`} fill priority style={{ objectFit: 'cover' }} />
 		</div>
 	);
 };

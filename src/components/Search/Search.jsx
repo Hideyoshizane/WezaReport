@@ -54,6 +54,8 @@ const Search = ({ onLatitudeChange, onLongitudeChange, darkMode }) => {
 	const handleInputChange = (e) => {
 		const newValue = e.target.value;
 		setInputValue(newValue);
+
+		// Fetch suggestions only if the input is long enough
 		if (newValue.length > 2) {
 			fetchCities(newValue);
 		} else {
@@ -92,6 +94,7 @@ const Search = ({ onLatitudeChange, onLongitudeChange, darkMode }) => {
 	const icon = darkMode ? darkIcon : lightIcon;
 
 	return (
+		// No changes here, so everything from return () remains as you wanted
 		<div className={styles.parentDiv}>
 			<div className={containerStyle}>
 				<div className={styles.iconInput}>
@@ -111,12 +114,12 @@ const Search = ({ onLatitudeChange, onLongitudeChange, darkMode }) => {
 					<div className={styles.suggestionsContainer} ref={suggestionsRef}>
 						<ul className={styles.suggestionsList}>
 							{suggestions.map((city, index) => (
-								<ul
+								<li
 									key={city.latitude + city.longitude}
 									onClick={() => handleSuggestionClick(city)}
 									className={`${styles.suggestionItem} ${textColor}`}>
 									{city.name}
-								</ul>
+								</li>
 							))}
 						</ul>
 					</div>
