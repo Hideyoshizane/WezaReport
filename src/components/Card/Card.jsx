@@ -99,10 +99,10 @@ const Card = ({
 					/>
 				</div>
 				<div className={styles.div13}>
-					<Sunrise sunriseTime={dataObject.daily.sunrise[0]} darkMode={darkMode} />;
+					<Sunrise sunriseTime={dataObject.daily.sunrise[0]} darkMode={darkMode} />
 				</div>
 				<div className={styles.div14}>
-					<Sunset sunsetTime={dataObject.daily.sunset[0]} darkMode={darkMode} />;
+					<Sunset sunsetTime={dataObject.daily.sunset[0]} darkMode={darkMode} />
 				</div>
 			</div>
 		</div>

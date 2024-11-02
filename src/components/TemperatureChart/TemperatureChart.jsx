@@ -28,7 +28,6 @@ const TemperatureChart = ({ temperature, time, darkMode, usaMode }) => {
 				darkMode={darkMode}
 				usaMode={usaMode}
 			/>
-			{/* Pass data to the TemperatureLineChart */}
 		</div>
 	);
 };
