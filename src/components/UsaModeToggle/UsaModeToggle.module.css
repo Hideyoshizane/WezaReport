@@ -30,7 +30,9 @@
     }
 
     .textDiv {
-        display: block;
+        display: flex;
+        align-items: center;
+        margin-left: 16px;
     }
 
     .Text {

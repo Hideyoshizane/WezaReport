@@ -1,7 +1,7 @@
 // pages/index.js
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import IndexPageComponent from '../src/components/Index/Index'; // Changed to camelCase
+import IndexPageComponent from '../src/components/Index/Index';
 
 const Home = () => {
 	const router = useRouter();

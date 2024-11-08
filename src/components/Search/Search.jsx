@@ -5,25 +5,28 @@ import styles from './Search.module.css';
 import lightIcon from '../../../public/assets/icons/light/search.png';
 import darkIcon from '../../../public/assets/icons/dark/search.png';
 
-const Search = ({ onLatitudeChange, onLongitudeChange, darkMode }) => {
+const Search = ({ handleSetCoordinates, darkMode }) => {
 	const [inputValue, setInputValue] = useState('');
 	const [suggestions, setSuggestions] = useState([]);
 	const [error, setError] = useState('');
 	const suggestionsRef = useRef(null);
 
 	const fetchCities = async (query) => {
-		const apiKey = process.env.NEXT_PUBLIC_GEOAPIFY_KEY;
+		// Nominatim API URL
+		const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
+			query
+		)}&format=json&addressdetails=1&limit=5`;
 
-		if (!apiKey) {
-			setError('API key is not set');
-			return;
-		}
-
-		const url = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(query)}&apiKey=${apiKey}&limit=5`;
+		// The Nominatim API requires a user agent (replace 'YourApp' with your application name)
+		const options = {
+			headers: {
+				'User-Agent': 'YourApp/1.0', // Replace with your app's name or email
+			},
+		};
 
 		try {
 			setError('');
-			const response = await fetch(url);
+			const response = await fetch(url, options);
 
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);
@@ -31,19 +34,23 @@ const Search = ({ onLatitudeChange, onLongitudeChange, darkMode }) => {
 
 			const data = await response.json();
 
-			const placeSuggestions = data.features.map((place) => {
-				const { properties, geometry } = place;
+			// Process the data to extract relevant information in the format "City, Country"
+			const placeSuggestions = data.map((place) => {
+				// Extract city and country
+				const city = place.address.city || place.address.town || place.address.village || '';
+				const country = place.address.country || '';
+				const name = city && country ? `${city}, ${country}` : place.display_name; // Fallback to full address if city or country is missing
 
 				return {
-					name: properties.formatted,
-					state: properties.state || '',
-					country: properties.country || '',
-					latitude: geometry.coordinates[1],
-					longitude: geometry.coordinates[0],
+					name: name, // "City, Country" format
+					state: place.address.state || '',
+					country: country,
+					latitude: place.lat,
+					longitude: place.lon,
 				};
 			});
 
-			setSuggestions(placeSuggestions.slice(0, 5));
+			setSuggestions(placeSuggestions);
 		} catch (error) {
 			console.error('Error fetching place suggestions:', error.message);
 			setError('Failed to fetch suggestions. Please try again.');
@@ -64,9 +71,11 @@ const Search = ({ onLatitudeChange, onLongitudeChange, darkMode }) => {
 	};
 
 	const handleSuggestionClick = (city) => {
+		const newLatitude = parseFloat(city.latitude);
+		const newLongitude = parseFloat(city.longitude);
 		setInputValue(city.name);
-		onLatitudeChange(city.latitude);
-		onLongitudeChange(city.longitude);
+		handleSetCoordinates({ latitude: newLatitude, longitude: newLongitude });
+
 		setSuggestions([]);
 	};
 
@@ -94,7 +103,6 @@ const Search = ({ onLatitudeChange, onLongitudeChange, darkMode }) => {
 	const icon = darkMode ? darkIcon : lightIcon;
 
 	return (
-		// No changes here, so everything from return () remains as you wanted
 		<div className={styles.parentDiv}>
 			<div className={containerStyle}>
 				<div className={styles.iconInput}>
@@ -115,7 +123,7 @@ const Search = ({ onLatitudeChange, onLongitudeChange, darkMode }) => {
 						<ul className={styles.suggestionsList}>
 							{suggestions.map((city, index) => (
 								<li
-									key={city.latitude + city.longitude}
+									key={`${city.latitude}-${city.longitude}-${city.name}-${index}`}
 									onClick={() => handleSuggestionClick(city)}
 									className={`${styles.suggestionItem} ${textColor}`}>
 									{city.name}

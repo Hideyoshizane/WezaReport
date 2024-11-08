@@ -18,18 +18,8 @@ import Menu from '@/components/Menu/Menu';
 
 import styles from './Card.module.css';
 
-const Card = ({
-	dataObject,
-	airObject,
-	onSetLatitude,
-	onSetLongitude,
-	onSetDarkMode,
-	onSetUsaMode,
-	usaMode,
-	darkMode,
-}) => {
+const Card = ({ dataObject, airObject, handleSetCoordinates, onSetDarkMode, onSetUsaMode, usaMode, darkMode }) => {
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;
-
 	return (
 		<div className={containerStyle}>
 			<div className={styles.parent}>
@@ -38,8 +28,7 @@ const Card = ({
 				</div>
 				<div className={styles.div2}>
 					<Menu
-						onLatitudeChange={onSetLatitude}
-						onLongitudeChange={onSetLongitude}
+						handleSetCoordinates={handleSetCoordinates}
 						onDarkModeChange={onSetDarkMode}
 						onUsaModeChange={onSetUsaMode}
 						darkMode={darkMode}

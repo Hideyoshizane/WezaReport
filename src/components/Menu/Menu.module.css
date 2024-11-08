@@ -17,7 +17,6 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: 26px;
-    margin-left: 16px;
 }
 
 .menuSpace {
@@ -62,6 +61,19 @@
 }
 
 @media (max-width:640px) {
+
+    .backgroundDark,
+    .backgroundLight {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        max-width: 400px;
+        transition: transform 0.3s ease-out;
+        z-index: 2;
+    }
+
     .iconSize {
         display: block;
     }
@@ -73,6 +85,12 @@
         align-items: flex-start;
         gap: 26px;
         margin-left: 16px;
+    }
+
+    .division {
+        display: flex;
+        flex-direction: column;
+        margin-left: 8px;
     }
 
     .menuSpace {

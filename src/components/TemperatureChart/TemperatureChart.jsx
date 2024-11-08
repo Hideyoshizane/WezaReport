@@ -16,7 +16,6 @@ const TemperatureChart = ({ temperature, time, darkMode, usaMode }) => {
 			hour12: false, // 24-hour format
 		});
 	});
-
 	return (
 		<div className={containerStyle}>
 			<div className={styles.titleWrapper}>

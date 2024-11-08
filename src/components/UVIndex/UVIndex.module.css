@@ -21,7 +21,8 @@
 
     .darkContainer,
     .lightContainer {
-        width: 53.594vw;
+        width: 343px;
+        height: 181px;
     }
 
     .Title {

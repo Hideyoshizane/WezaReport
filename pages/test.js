@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 import Card from '@/components/Card/Card';
 import BackgroundImage from '@/components/BackgroundImage/BackgroundImage';
@@ -9,8 +10,11 @@ import AirQualityPlaceholder from '../Airquality.json';
 import WeatherPlaceholder from '../placeholder.json';
 
 export default function Main() {
-	const [latitude, setLatitude] = useState('');
-	const [longitude, setLongitude] = useState('');
+	const router = useRouter();
+	const { latitude: queryLatitude, longitude: queryLongitude } = router.query;
+
+	const [latitude, setLatitude] = useState(queryLatitude || null);
+	const [longitude, setLongitude] = useState(queryLongitude || null);
 
 	const [darkMode, setDarkMode] = useState(() => {
 		if (typeof window !== 'undefined') {
@@ -29,8 +33,8 @@ export default function Main() {
 	const [airQualityData, setAirQualityData] = useState(null);
 
 	// Default coordinates
-	const DEFAULT_LATITUDE = 40.7128;
-	const DEFAULT_LONGITUDE = -74.006;
+	const DEFAULT_LATITUDE = 28.41601261753784;
+	const DEFAULT_LONGITUDE = -81.5811970806693;
 
 	// Fetch weather and air quality data based on latitude and longitude
 	const fetchWeatherAndAirQualityData = async (lat, lon) => {
@@ -59,53 +63,68 @@ export default function Main() {
 		const initializeLocation = async () => {
 			let lat, lon;
 
-			if (navigator.geolocation) {
-				await new Promise((resolve) => {
-					navigator.geolocation.getCurrentPosition(
-						(position) => {
-							lat = position.coords.latitude;
-							lon = position.coords.longitude;
-							setLatitude(lat);
-							setLongitude(lon);
-							localStorage.setItem('latitude', lat);
-							localStorage.setItem('longitude', lon);
-							resolve();
-						},
-						() => {
-							const savedLatitude = localStorage.getItem('latitude');
-							const savedLongitude = localStorage.getItem('longitude');
-							if (savedLatitude && savedLongitude) {
-								lat = savedLatitude;
-								lon = savedLongitude;
-								setLatitude(lat);
-								setLongitude(lon);
-							} else {
-								lat = DEFAULT_LATITUDE;
-								lon = DEFAULT_LONGITUDE;
-								setLatitude(lat);
-								setLongitude(lon);
-							}
-							resolve();
-						}
-					);
-				});
-			} else {
-				lat = DEFAULT_LATITUDE;
-				lon = DEFAULT_LONGITUDE;
+			if (queryLatitude && queryLongitude) {
+				// Use query parameters if available
+				lat = parseFloat(queryLatitude);
+				lon = parseFloat(queryLongitude);
 				setLatitude(lat);
 				setLongitude(lon);
+			} else {
+				// Fallback to geolocation if query parameters are not provided
+				if (navigator.geolocation) {
+					await new Promise((resolve) => {
+						navigator.geolocation.getCurrentPosition(
+							(position) => {
+								lat = position.coords.latitude;
+								lon = position.coords.longitude;
+								setLatitude(lat);
+								setLongitude(lon);
+								localStorage.setItem('latitude', lat);
+								localStorage.setItem('longitude', lon);
+								resolve();
+							},
+							() => {
+								const savedLatitude = localStorage.getItem('latitude');
+								const savedLongitude = localStorage.getItem('longitude');
+								if (savedLatitude && savedLongitude) {
+									lat = savedLatitude;
+									lon = savedLongitude;
+									setLatitude(lat);
+									setLongitude(lon);
+								} else {
+									lat = DEFAULT_LATITUDE;
+									lon = DEFAULT_LONGITUDE;
+									setLatitude(lat);
+									setLongitude(lon);
+								}
+								resolve();
+							}
+						);
+					});
+				} else {
+					lat = DEFAULT_LATITUDE;
+					lon = DEFAULT_LONGITUDE;
+					setLatitude(lat);
+					setLongitude(lon);
+				}
 			}
 		};
 
 		initializeLocation();
-	}, []);
+	}, [queryLatitude, queryLongitude]);
 
 	// Re-fetch data whenever latitude or longitude changes
 	useEffect(() => {
 		if (latitude && longitude) {
-			//fetchWeatherAndAirQualityData(latitude, longitude);
+			fetchWeatherAndAirQualityData(latitude, longitude);
+			// Update the router query string when latitude or longitude changes
+			if (latitude && longitude) {
+				const storedLatitude = latitude;
+				const storedLongitude = longitude;
+				router.push(`/main?latitude=${storedLatitude}&longitude=${storedLongitude}`, undefined, { shallow: true });
+			}
 		}
-	}, [latitude, longitude]);
+	}, [latitude, longitude, router]);
 
 	useEffect(() => {
 		localStorage.setItem('darkMode', JSON.stringify(darkMode));
@@ -145,6 +164,3 @@ export default function Main() {
 		</div>
 	);
 }
-
-// dataObject = { weatherData };
-// airObject = { airQualityData };
