@@ -11,3 +11,23 @@ body {
     font-family: 'Montserrat', sans-serif;
 
 }
+
+.darkText {
+    color: #F5F5F5;
+    padding: 0;
+    margin: 0;
+}
+
+.lightText {
+    color: #112A46;
+    padding: 0;
+    margin: 0;
+}
+
+.darkText::placeholder {
+    color: #F5F5F5;
+}
+
+.lightText::placeholder {
+    color: #112A46;
+}

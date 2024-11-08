@@ -10,7 +10,7 @@ const DarkModeToggle = ({ onDarkModeChange, darkMode }) => {
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;
 	const iconColor = darkMode ? styles.darkIconColor : styles.lightIconColor;
 	const textType = darkMode ? styles.NightType : styles.LightType;
-	const textColor = darkMode ? styles.darkText : styles.lightText;
+	const textColor = darkMode ? 'darkText' : 'lightText';
 	const slideClass = darkMode ? styles.slideInLeft : styles.slideInRight;
 
 	return (

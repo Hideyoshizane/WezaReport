@@ -12,7 +12,7 @@ const Visibility = ({ hourly, visibility, darkMode }) => {
 	const index = findClosestTimestampIndex(hourly);
 
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;
-	const textColor = darkMode ? styles.darkText : styles.lightText;
+	const textColor = darkMode ? 'darkText' : 'lightText';
 	const icon = darkMode ? darkIcon : lightIcon;
 
 	const kilometers = (visibility[index] / 1000).toFixed(2);

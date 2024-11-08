@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import WeatherFetcher from '../src/components/WeatherFetch/WeatherFetch';
 import '../styles/globals.css'; // Import the global CSS file
 
 export default function Main() {
@@ -71,11 +70,6 @@ export default function Main() {
 					)}
 				</>
 			)}
-			<WeatherFetcher
-				latitude={location.latitude || queryLatitude}
-				longitude={location.longitude || queryLongitude}
-				onFetch={handleFetch}
-			/>
 		</div>
 	);
 }

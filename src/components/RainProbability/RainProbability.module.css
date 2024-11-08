@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    gap: 8px;
 }
 
 
@@ -15,18 +15,6 @@
 
 .lightContainer {
     background-color: #51A3F5;
-}
-
-.darkText {
-    color: #F5F5F5;
-    padding: 0;
-    margin: 0;
-}
-
-.lightText {
-    color: #112A46;
-    padding: 0;
-    margin: 0;
 }
 
 .iconSize {

@@ -18,8 +18,7 @@ const Today = ({ time, code, maxTemp, lowTemp, apparentTemp, darkMode, usaMode }
 
 	// Combine container and specific styles
 	const getContainerStyle = () => `${styles.container} ${styles[`${category}${darkMode ? 'Dark' : 'Light'}`]}`;
-	const getTextColor = () =>
-		category === 'storm' && !darkMode ? styles.darkText : darkMode ? styles.darkText : styles.lightText;
+	const getTextColor = () => (category === 'storm' && !darkMode ? 'darkText' : darkMode ? 'darkText' : 'lightText');
 
 	const containerStyle = getContainerStyle();
 	const textColor = getTextColor();

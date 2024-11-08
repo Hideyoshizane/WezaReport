@@ -11,7 +11,7 @@ import windDirectionIconDark from '../../../public/assets/icons/dark/windDirecti
 
 const Wind = ({ windSpeed, windDirection, darkMode, usaMode }) => {
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;
-	const textColor = darkMode ? styles.darkText : styles.lightText;
+	const textColor = darkMode ? 'darkText' : 'lightText';
 	const icon = darkMode ? darkIcon : lightIcon;
 	const windIcon = darkMode ? windDirectionIconDark : windDirectionIconLight;
 

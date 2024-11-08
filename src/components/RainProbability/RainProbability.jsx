@@ -8,7 +8,7 @@ import darkIcon from '../../../public/assets/icons/dark/rain.png';
 
 const RainProbability = ({ percentage, darkMode }) => {
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;
-	const textColor = darkMode ? styles.darkText : styles.lightText;
+	const textColor = darkMode ? 'darkText' : 'lightText';
 	const icon = darkMode ? darkIcon : lightIcon;
 
 	return (

@@ -29,9 +29,8 @@ async function getCityFromCoordinates(latitude, longitude) {
 
 const Location = ({ latitude, longitude, darkMode }) => {
 	const [city, setCity] = useState('Loading...'); // Set initial loading state
-	const textColor = darkMode ? styles.darkText : styles.lightText;
+	const textColor = darkMode ? 'darkText' : 'lightText';
 	const icon = darkMode ? darkIcon : lightIcon;
-
 	useEffect(() => {
 		const fetchCity = async () => {
 			const fetchedCity = await getCityFromCoordinates(latitude, longitude);

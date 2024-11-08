@@ -8,7 +8,7 @@ import darkIcon from '../../../public/assets/icons/dark/sunrise.png';
 
 const Sunrise = ({ sunriseTime, darkMode }) => {
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;
-	const textColor = darkMode ? styles.darkText : styles.lightText;
+	const textColor = darkMode ? 'darkText' : 'lightText';
 	const icon = darkMode ? darkIcon : lightIcon;
 
 	// Simple function to format ISO date to "HH:MM"

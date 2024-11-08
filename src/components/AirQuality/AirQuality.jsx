@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 
 import styles from './AirQuality.module.css';
+import '../../../styles/globals.css';
 
 import lightIcon from '../../../public/assets/icons/light/air.png';
 import darkIcon from '../../../public/assets/icons/dark/air.png';
@@ -19,16 +20,16 @@ const getAQIMessage = (value) => {
 
 const AirQuality = ({ AQI, darkMode }) => {
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;
-	const textColor = darkMode ? styles.darkText : styles.lightText;
+	const textColor = darkMode ? 'darkText' : 'lightText';
 	const icon = darkMode ? darkIcon : lightIcon;
 
 	return (
 		<div className={containerStyle}>
 			<div className={styles.titleWrapper}>
 				<Image src={icon} alt="Air Quality Icon" className={styles.iconSize} priority />
-				<h1 className={`${styles.Title} ${textColor}`}>Air Quality</h1>
+				<h1 className={`${styles.Title} ${textColor} ${styles.textPadding}`}>Air Quality</h1>
 			</div>
-			<h2 className={`${styles.Text} ${textColor}`}>
+			<h2 className={`${styles.Text} ${textColor} ${styles.textPadding}`}>
 				{getAQIMessage(AQI)} ({AQI})
 			</h2>
 		</div>

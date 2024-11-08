@@ -14,8 +14,7 @@ const UVIndex = ({ uvValue, darkMode }) => {
 	};
 
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;
-	const textColor = darkMode ? styles.darkText : styles.lightText;
-
+	const textColor = darkMode ? 'darkText' : 'lightText';
 	return (
 		<div className={containerStyle}>
 			<h1 className={`${styles.Title} ${textColor}`}>UV INDEX</h1>

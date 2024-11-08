@@ -5,7 +5,7 @@ import styles from './UsaModeToggle.module.css';
 
 const UsaModeToggle = ({ onUsaModeChange, usaMode, darkMode }) => {
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;
-	const textColor = darkMode ? styles.darkText : styles.lightText;
+	const textColor = darkMode ? 'darkText' : 'lightText';
 
 	return (
 		<div style={{ display: 'flex' }} onClick={onUsaModeChange}>

@@ -9,17 +9,12 @@ import styles from './WeatherCard.module.css';
 const WeatherCard = ({ day, code, maxTemp, lowTemp, darkMode, usaMode }) => {
 	maxTemp = usaMode ? convertTemp(maxTemp) : roundTemperature(maxTemp);
 	lowTemp = usaMode ? convertTemp(lowTemp) : roundTemperature(lowTemp);
-
 	const { icon, category } = useWeatherIcon(code, darkMode);
 
 	// Combine container and specific styles
 	const containerStyle = `${styles.container} ${styles[`${category}${darkMode ? 'Dark' : 'Light'}`]}`;
 	const textColor =
-		containerStyle === `${styles.container} ${styles.stormLight}`
-			? styles.darkText
-			: darkMode
-			? styles.darkText
-			: styles.lightText;
+		containerStyle === `${styles.container} ${styles.stormLight}` ? 'darkText' : darkMode ? 'darkText' : 'lightText';
 
 	return (
 		<div className={containerStyle}>

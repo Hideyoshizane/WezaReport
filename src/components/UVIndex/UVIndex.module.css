@@ -17,18 +17,6 @@
     background-color: #D7D3F2;
 }
 
-.darkText {
-    color: #F5F5F5;
-    padding: 0;
-    margin: 0;
-}
-
-.lightText {
-    color: #112A46;
-    padding: 0;
-    margin: 0;
-}
-
 @media (max-width:640px) {
 
     .darkContainer,

@@ -5,9 +5,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    gap: 8px;
 }
-
 
 .darkContainer {
     background-color: #1E445C;
@@ -17,14 +16,7 @@
     background-color: #CAE5F6;
 }
 
-.darkText {
-    color: #F5F5F5;
-    padding: 0;
-    margin: 0;
-}
-
-.lightText {
-    color: #112A46;
+.textPadding {
     padding: 0;
     margin: 0;
 }

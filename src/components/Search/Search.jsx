@@ -90,7 +90,7 @@ const Search = ({ onLatitudeChange, onLongitudeChange, darkMode }) => {
 	const containerStyle = `${darkMode ? styles.darkContainer : styles.lightContainer} ${
 		suggestions.length > 0 ? styles.expanded : ''
 	}`;
-	const textColor = darkMode ? styles.darkText : styles.lightText;
+	const textColor = darkMode ? 'darkText' : 'lightText';
 	const icon = darkMode ? darkIcon : lightIcon;
 
 	return (

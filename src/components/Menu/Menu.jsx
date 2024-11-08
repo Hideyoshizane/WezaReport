@@ -14,7 +14,7 @@ const Menu = ({ onLatitudeChange, onLongitudeChange, onDarkModeChange, onUsaMode
 	const [isOpen, setIsOpen] = useState(false);
 	const containerStyle = darkMode ? styles.backgroundDark : styles.backgroundLight;
 	const icon = darkMode ? darkIcon : lightIcon;
-	const textColor = darkMode ? styles.darkText : styles.lightText;
+	const textColor = darkMode ? 'darkText' : 'lightText';
 
 	const toggleMenu = () => setIsOpen(!isOpen);
 

@@ -4,7 +4,7 @@ import styles from './TemperatureChart.module.css';
 
 const TemperatureChart = ({ temperature, time, darkMode, usaMode }) => {
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;
-	const textColor = darkMode ? styles.darkText : styles.lightText;
+	const textColor = darkMode ? 'darkText' : 'lightText';
 
 	const convertedTemperature = usaMode ? temperature.map((temp) => (temp * 9) / 5 + 32) : temperature;
 
