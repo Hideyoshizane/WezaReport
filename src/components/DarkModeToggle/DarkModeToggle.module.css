@@ -144,8 +144,9 @@
 
 
     .Text {
-        display: block;
-        margin-left: 8px;
+        display: flex;
+        align-items: center;
+        margin-left: 16px;
     }
 }
 
