@@ -4,56 +4,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: aquamarine;
-}
-
-.sunnyLight {
-    background-color: #FFD147;
-}
-
-.sunnyDark {
-    background-color: #8F6B00;
-}
-
-.cloudyLight {
-    background-color: #C9CFCF;
-}
-
-.cloudyDark {
-    background-color: #576060;
-}
-
-.rainyLight {
-    background-color: #51A3F5;
-}
-
-.rainyDark {
-    background-color: #073D74;
-}
-
-.snowLight {
-    background-color: #B6CBE2;
-}
-
-.snowDark {
-    background-color: #294666;
-}
-
-
-.snowstormLight {
-    background-color: #7CA2CB;
-}
-
-.snowstormDark {
-    background-color: #1D3249;
-}
-
-.stormLight {
-    background-color: #515C67;
-}
-
-.stormDark {
-    background-color: #24292E;
 }
 
 @media (max-width:640px) {

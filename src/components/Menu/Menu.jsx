@@ -10,7 +10,7 @@ import darkIcon from '../../../public/assets/icons/dark/menu.png';
 
 import styles from './Menu.module.css';
 
-const Menu = ({ handleSetCoordinates, onDarkModeChange, onUsaModeChange, darkMode, usaMode }) => {
+const Menu = ({ onDarkModeChange, onUsaModeChange, darkMode, usaMode }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const containerStyle = darkMode ? styles.backgroundDark : styles.backgroundLight;
 	const icon = darkMode ? darkIcon : lightIcon;
@@ -42,7 +42,7 @@ const Menu = ({ handleSetCoordinates, onDarkModeChange, onUsaModeChange, darkMod
 						<Image src={icon} alt="Menu Icon" className={styles.iconSize} onClick={toggleMenu} priority />
 					</div>
 					<div className={styles.menuSpace}>
-						<Search darkMode={darkMode} handleSetCoordinates={handleSetCoordinates} />
+						<Search darkMode={darkMode} />
 					</div>
 					<UsaModeToggle onUsaModeChange={onUsaModeChange} usaMode={usaMode} darkMode={darkMode} />
 					<DarkModeToggle onDarkModeChange={onDarkModeChange} darkMode={darkMode} />

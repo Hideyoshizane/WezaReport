@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { popInAnimation } from '@/utils/animations';
 
 import UVIndex from '@/components/UVIndex/UVIndex';
 import AirQuality from '@/components/AirQuality/AirQuality';
@@ -12,13 +14,12 @@ import Sunset from '@/components/Sunset/Sunset';
 import ForecastGroup from '@/components/ForecastGroup/ForecastGroup';
 import TemperatureChart from '@/components/TemperatureChart/TemperatureChart';
 import Today from '@/components/Today/Today';
-
 import Location from '@/components/Location/Location';
 import Menu from '@/components/Menu/Menu';
 
 import styles from './Card.module.css';
 
-const Card = ({ dataObject, airObject, handleSetCoordinates, onSetDarkMode, onSetUsaMode, usaMode, darkMode }) => {
+const Card = ({ dataObject, airObject, onSetDarkMode, onSetUsaMode, usaMode, darkMode }) => {
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;
 	return (
 		<div className={containerStyle}>
@@ -27,15 +28,9 @@ const Card = ({ dataObject, airObject, handleSetCoordinates, onSetDarkMode, onSe
 					<Location latitude={dataObject.latitude} longitude={dataObject.longitude} darkMode={darkMode} />
 				</div>
 				<div className={styles.div2}>
-					<Menu
-						handleSetCoordinates={handleSetCoordinates}
-						onDarkModeChange={onSetDarkMode}
-						onUsaModeChange={onSetUsaMode}
-						darkMode={darkMode}
-						usaMode={usaMode}
-					/>
+					<Menu onDarkModeChange={onSetDarkMode} onUsaModeChange={onSetUsaMode} darkMode={darkMode} usaMode={usaMode} />
 				</div>
-				<div className={styles.div3}>
+				<motion.div className={styles.div3} {...popInAnimation}>
 					<Today
 						time={dataObject.current.time}
 						code={dataObject.current.weather_code}
@@ -45,15 +40,15 @@ const Card = ({ dataObject, airObject, handleSetCoordinates, onSetDarkMode, onSe
 						darkMode={darkMode}
 						usaMode={usaMode}
 					/>
-				</div>
-				<div className={styles.div4}>
+				</motion.div>
+				<motion.div className={styles.div4} {...popInAnimation}>
 					<ForecastGroup
 						currentDate={dataObject.current.time}
 						WeatherData={dataObject.daily}
 						darkMode={darkMode}
 						usaMode={usaMode}
 					/>
-				</div>
+				</motion.div>
 				<div className={styles.div5}>
 					<TemperatureChart
 						time={dataObject.hourly.time.slice(0, 24)}
@@ -62,37 +57,37 @@ const Card = ({ dataObject, airObject, handleSetCoordinates, onSetDarkMode, onSe
 						usaMode={usaMode}
 					/>
 				</div>
-				<div className={styles.div6}>
+				<motion.div className={styles.div6} {...popInAnimation}>
 					<UVIndex uvValue={dataObject.daily.uv_index_max[0]} darkMode={darkMode} />
-				</div>
-				<div className={styles.div7}>
+				</motion.div>
+				<motion.div className={styles.div7} {...popInAnimation}>
 					<Visibility hourly={dataObject.hourly.time} visibility={dataObject.hourly.visibility} darkMode={darkMode} />
-				</div>
-				<div className={styles.div8}>
+				</motion.div>
+				<motion.div className={styles.div8} {...popInAnimation}>
 					<Pressure pressurehPa={dataObject.current.surface_pressure} darkMode={darkMode} />;
-				</div>
-				<div className={styles.div9}>
+				</motion.div>
+				<motion.div className={styles.div9} {...popInAnimation}>
 					<Humidity percentage={dataObject.current.relative_humidity_2m} darkMode={darkMode} />
-				</div>
-				<div className={styles.div10}>
+				</motion.div>
+				<motion.div className={styles.div10} {...popInAnimation}>
 					<RainProbability percentage={dataObject.daily.precipitation_probability_max[0]} darkMode={darkMode} />
-				</div>
-				<div className={styles.div11}>
+				</motion.div>
+				<motion.div className={styles.div11} {...popInAnimation}>
 					<AirQuality AQI={airObject.current.us_aqi} darkMode={darkMode} />
-				</div>
-				<div className={styles.div12}>
+				</motion.div>
+				<motion.div className={styles.div12} {...popInAnimation}>
 					<Wind
 						windSpeed={dataObject.current.wind_speed_10m}
 						windDirection={dataObject.current.wind_direction_10m}
 						darkMode={darkMode}
 					/>
-				</div>
-				<div className={styles.div13}>
+				</motion.div>
+				<motion.div className={styles.div13} {...popInAnimation}>
 					<Sunrise sunriseTime={dataObject.daily.sunrise[0]} darkMode={darkMode} />
-				</div>
-				<div className={styles.div14}>
+				</motion.div>
+				<motion.div className={styles.div14} {...popInAnimation}>
 					<Sunset sunsetTime={dataObject.daily.sunset[0]} darkMode={darkMode} />
-				</div>
+				</motion.div>
 			</div>
 		</div>
 	);

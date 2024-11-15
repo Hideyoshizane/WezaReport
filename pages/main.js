@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useCoordinates } from '@/contexts/CoordinatesContext';
 
 import Card from '@/components/Card/Card';
 import BackgroundImage from '@/components/BackgroundImage/BackgroundImage';
+import Spinner from '@/components/Spinner/Spinner';
 
 import '../styles/globals.css';
 
@@ -12,29 +14,30 @@ import WeatherPlaceholder from '../placeholder.json';
 export default function Main() {
 	const router = useRouter();
 	const { latitude: queryLatitude, longitude: queryLongitude } = router.query;
+	const { coordinates, updateCoordinates } = useCoordinates();
+	const [darkMode, setDarkMode] = useState(true);
+	const [usaMode, setUsaMode] = useState(false);
 
-	const [coordinates, setCoordinates] = useState({
-		latitude: null, // Default to null
-		longitude: null, // Default to null
-	});
-
-	const [darkMode, setDarkMode] = useState(() => {
+	useEffect(() => {
 		if (typeof window !== 'undefined') {
-			return JSON.parse(localStorage.getItem('darkMode')) || true;
+			const storedDarkMode = localStorage.getItem('darkMode');
+			if (storedDarkMode !== null) {
+				setDarkMode(JSON.parse(storedDarkMode));
+			}
 		}
-		return true; // default value
-	});
+	}, []);
 
-	const [usaMode, setUsaMode] = useState(() => {
+	useEffect(() => {
 		if (typeof window !== 'undefined') {
-			return JSON.parse(localStorage.getItem('usaMode')) || false;
+			const storedUsaMode = localStorage.getItem('usaMode');
+			if (storedUsaMode !== null) {
+				setDarkMode(JSON.parse(storedUsaMode));
+			}
 		}
-		return false; // default value
-	});
+	}, []);
 
 	const [weatherData, setWeatherData] = useState(null);
 	const [airQualityData, setAirQualityData] = useState(null);
-	const [isFetching, setIsFetching] = useState(false);
 
 	// Fetch weather and air quality data based on latitude and longitude
 	const fetchWeatherAndAirQualityData = async (lat, lon) => {
@@ -42,7 +45,6 @@ export default function Main() {
 		const airQualityUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=us_aqi&timezone=auto&forecast_days=1`;
 
 		try {
-			setIsFetching(true);
 			const weatherResponse = await fetch(weatherUrl);
 			const airQualityResponse = await fetch(airQualityUrl);
 
@@ -57,8 +59,6 @@ export default function Main() {
 			setAirQualityData(airQualityData);
 		} catch (error) {
 			console.error('Error fetching data:', error);
-		} finally {
-			setIsFetching(false);
 		}
 	};
 
@@ -69,7 +69,7 @@ export default function Main() {
 
 			// Set latitude and longitude only if they are valid
 			if (!isNaN(lat) && !isNaN(lon)) {
-				setCoordinates({ latitude: lat, longitude: lon });
+				updateCoordinates({ latitude: lat, longitude: lon });
 			} else {
 				console.log('Invalid latitude or longitude in query');
 			}
@@ -101,12 +101,6 @@ export default function Main() {
 	const handleUsaModeChange = () => {
 		setUsaMode((prevUsaMode) => !prevUsaMode);
 	};
-
-	const handleSetCoordinates = ({ latitude, longitude }) => {
-		// Update URL query and coordinates state
-		router.push(`/main?latitude=${latitude}&longitude=${longitude}`);
-	};
-
 	return (
 		<div>
 			{weatherData && airQualityData ? (
@@ -115,7 +109,6 @@ export default function Main() {
 					<Card
 						dataObject={weatherData}
 						airObject={airQualityData}
-						handleSetCoordinates={handleSetCoordinates}
 						onSetDarkMode={handleDarkModeChange}
 						onSetUsaMode={handleUsaModeChange}
 						usaMode={usaMode}
@@ -123,7 +116,7 @@ export default function Main() {
 					/>
 				</>
 			) : (
-				<p>{isFetching ? 'Loading data...' : 'No data available'}</p>
+				<Spinner />
 			)}
 		</div>
 	);

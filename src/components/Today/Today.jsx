@@ -17,7 +17,7 @@ const Today = ({ time, code, maxTemp, lowTemp, apparentTemp, darkMode, usaMode }
 	const capitalizedCategory = category.charAt(0).toUpperCase() + category.slice(1);
 
 	// Combine container and specific styles
-	const getContainerStyle = () => `${styles.container} ${styles[`${category}${darkMode ? 'Dark' : 'Light'}`]}`;
+	const getContainerStyle = () => `${styles.container} ${`${category}${darkMode ? 'Dark' : 'Light'}`}`;
 	const getTextColor = () => (category === 'storm' && !darkMode ? 'darkText' : darkMode ? 'darkText' : 'lightText');
 
 	const containerStyle = getContainerStyle();

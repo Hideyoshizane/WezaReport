@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 
 import Card from '@/components/Card/Card';
 import BackgroundImage from '@/components/BackgroundImage/BackgroundImage';
+import Spinner from '@/components/Spinner/Spinner';
 
 import '../styles/globals.css';
 
@@ -121,7 +122,7 @@ export default function Main() {
 			if (latitude && longitude) {
 				const storedLatitude = latitude;
 				const storedLongitude = longitude;
-				router.push(`/main?latitude=${storedLatitude}&longitude=${storedLongitude}`, undefined, { shallow: true });
+				//router.push(`/main?latitude=${storedLatitude}&longitude=${storedLongitude}`, undefined, { shallow: true });
 			}
 		}
 	}, [latitude, longitude, router]);
@@ -144,7 +145,8 @@ export default function Main() {
 
 	return (
 		<div>
-			{WeatherPlaceholder && AirQualityPlaceholder ? (
+			<Spinner darkMode={true}></Spinner>
+			{/* {WeatherPlaceholder && AirQualityPlaceholder ? (
 				<>
 					<BackgroundImage code={WeatherPlaceholder.current.weather_code} darkMode={darkMode} />
 					<Card
@@ -160,7 +162,7 @@ export default function Main() {
 				</>
 			) : (
 				<p>Loading...</p> // Display a loading message while data is being fetched
-			)}
+			)} */}
 		</div>
 	);
 }

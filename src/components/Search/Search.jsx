@@ -5,11 +5,15 @@ import styles from './Search.module.css';
 import lightIcon from '../../../public/assets/icons/light/search.png';
 import darkIcon from '../../../public/assets/icons/dark/search.png';
 
-const Search = ({ handleSetCoordinates, darkMode }) => {
+import { useCoordinates } from '@/contexts/CoordinatesContext';
+
+const Search = ({ darkMode }) => {
 	const [inputValue, setInputValue] = useState('');
 	const [suggestions, setSuggestions] = useState([]);
 	const [error, setError] = useState('');
 	const suggestionsRef = useRef(null);
+
+	const { updateCoordinates } = useCoordinates();
 
 	const fetchCities = async (query) => {
 		// Nominatim API URL
@@ -74,7 +78,7 @@ const Search = ({ handleSetCoordinates, darkMode }) => {
 		const newLatitude = parseFloat(city.latitude);
 		const newLongitude = parseFloat(city.longitude);
 		setInputValue(city.name);
-		handleSetCoordinates({ latitude: newLatitude, longitude: newLongitude });
+		updateCoordinates({ latitude: newLatitude, longitude: newLongitude });
 
 		setSuggestions([]);
 	};

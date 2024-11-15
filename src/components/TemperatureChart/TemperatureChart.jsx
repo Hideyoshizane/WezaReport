@@ -1,12 +1,19 @@
-import React from 'react';
-import TemperatureLineChart from '@/components/TemperatureLineChart/TemperatureLineChart'; // Import the new chart component
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+
+import TemperatureLineChart from '@/components/TemperatureLineChart/TemperatureLineChart';
 import styles from './TemperatureChart.module.css';
 
+import { popInAnimation } from '@/utils/animations';
+import { convertTemp } from '@/utils/temperatureUtils';
+
 const TemperatureChart = ({ temperature, time, darkMode, usaMode }) => {
+	const [chartVisible, setChartVisible] = useState(false);
+
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;
 	const textColor = darkMode ? 'darkText' : 'lightText';
 
-	const convertedTemperature = usaMode ? temperature.map((temp) => (temp * 9) / 5 + 32) : temperature;
+	const convertedTemperature = usaMode ? temperature.map((temp) => convertTemp(temp)) : temperature;
 
 	const formattedTime = time.map((t) => {
 		const date = new Date(t); // Convert to Date object
@@ -17,17 +24,23 @@ const TemperatureChart = ({ temperature, time, darkMode, usaMode }) => {
 		});
 	});
 	return (
-		<div className={containerStyle}>
+		<motion.div className={containerStyle} {...popInAnimation} onAnimationComplete={() => setChartVisible(true)}>
 			<div className={styles.titleWrapper}>
 				<h1 className={`${styles.Title} ${textColor}`}>Temperature Today</h1>
 			</div>
-			<TemperatureLineChart
-				time={formattedTime}
-				convertedTemperature={convertedTemperature}
-				darkMode={darkMode}
-				usaMode={usaMode}
-			/>
-		</div>
+			<div className={styles.chartWrapper}>
+				{chartVisible ? (
+					<TemperatureLineChart
+						time={formattedTime}
+						convertedTemperature={convertedTemperature}
+						darkMode={darkMode}
+						usaMode={usaMode}
+					/>
+				) : (
+					<div className={styles.placeholder}></div>
+				)}
+			</div>
+		</motion.div>
 	);
 };
 
