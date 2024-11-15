@@ -16,15 +16,13 @@ const Search = ({ darkMode }) => {
 	const { updateCoordinates } = useCoordinates();
 
 	const fetchCities = async (query) => {
-		// Nominatim API URL
 		const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
 			query
 		)}&format=json&addressdetails=1&limit=5`;
 
-		// The Nominatim API requires a user agent (replace 'YourApp' with your application name)
 		const options = {
 			headers: {
-				'User-Agent': 'YourApp/1.0', // Replace with your app's name or email
+				'User-Agent': 'YourApp/1.0',
 			},
 		};
 
@@ -37,10 +35,7 @@ const Search = ({ darkMode }) => {
 			}
 
 			const data = await response.json();
-
-			// Process the data to extract relevant information in the format "City, Country"
 			const placeSuggestions = data.map((place) => {
-				// Extract city and country
 				const city = place.address.city || place.address.town || place.address.village || '';
 				const country = place.address.country || '';
 				const name = city && country ? `${city}, ${country}` : place.display_name; // Fallback to full address if city or country is missing

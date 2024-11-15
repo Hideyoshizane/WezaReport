@@ -8,7 +8,6 @@ const ForecastGroup = ({ currentDate, WeatherData, darkMode, usaMode }) => {
 	const daysArray = [];
 	daysArray.push(dateObj.toLocaleDateString('en-US', { weekday: 'long' }));
 
-	// Get the next 6 days of the week starting from array[1]
 	for (let i = 1; i <= 6; i++) {
 		const nextDate = new Date(dateObj);
 		nextDate.setDate(dateObj.getDate() + i);

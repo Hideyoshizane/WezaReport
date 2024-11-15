@@ -6,7 +6,6 @@ import styles from './Location.module.css';
 import lightIcon from '../../../public/assets/icons/light/location.png';
 import darkIcon from '../../../public/assets/icons/dark/location.png';
 
-// Function to fetch the city from coordinates
 async function getCityFromCoordinates(latitude, longitude) {
 	const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
 	try {
@@ -27,11 +26,10 @@ async function getCityFromCoordinates(latitude, longitude) {
 
 const Location = ({ latitude, longitude, darkMode }) => {
 	const [city, setCity] = useState('Loading...'); // Initial loading state
-	const textColor = darkMode ? 'darkText' : 'lightText'; // Text color based on dark mode
-	const icon = darkMode ? darkIcon : lightIcon; // Icon based on dark mode
+	const textColor = darkMode ? 'darkText' : 'lightText';
+	const icon = darkMode ? darkIcon : lightIcon;
 
 	useEffect(() => {
-		// Only fetch if latitude and longitude are provided
 		if (latitude && longitude) {
 			getCityFromCoordinates(latitude, longitude)
 				.then((fetchedCity) => setCity(fetchedCity))
@@ -39,8 +37,7 @@ const Location = ({ latitude, longitude, darkMode }) => {
 		} else {
 			setCity('Coordinates not provided');
 		}
-		// Dependency array includes latitude and longitude so it updates when they change
-	}, [latitude, longitude]); // Update when latitude or longitude changes
+	}, [latitude, longitude]);
 
 	return (
 		<div className={styles.container}>

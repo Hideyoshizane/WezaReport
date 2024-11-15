@@ -11,7 +11,6 @@ const WeatherCard = ({ day, code, maxTemp, lowTemp, darkMode, usaMode }) => {
 	lowTemp = usaMode ? convertTemp(lowTemp) : roundTemperature(lowTemp);
 	const { icon, category } = useWeatherIcon(code, darkMode);
 
-	// Combine container and specific styles
 	const containerStyle = `${styles.container} ${`${category}${darkMode ? 'Dark' : 'Light'}`}`;
 	const textColor =
 		containerStyle === `${styles.container} ${styles.stormLight}` ? 'darkText' : darkMode ? 'darkText' : 'lightText';

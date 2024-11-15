@@ -6,6 +6,7 @@ import styles from './TemperatureChart.module.css';
 
 import { popInAnimation } from '@/utils/animations';
 import { convertTemp } from '@/utils/temperatureUtils';
+import { formatTimeArray } from '@/utils/dateUtils';
 
 const TemperatureChart = ({ temperature, time, darkMode, usaMode }) => {
 	const [chartVisible, setChartVisible] = useState(false);
@@ -15,14 +16,7 @@ const TemperatureChart = ({ temperature, time, darkMode, usaMode }) => {
 
 	const convertedTemperature = usaMode ? temperature.map((temp) => convertTemp(temp)) : temperature;
 
-	const formattedTime = time.map((t) => {
-		const date = new Date(t); // Convert to Date object
-		return date.toLocaleTimeString('en-US', {
-			hour: '2-digit',
-			minute: '2-digit',
-			hour12: false, // 24-hour format
-		});
-	});
+	const formattedTime = formatTimeArray(timeArray);
 	return (
 		<motion.div className={containerStyle} {...popInAnimation} onAnimationComplete={() => setChartVisible(true)}>
 			<div className={styles.titleWrapper}>

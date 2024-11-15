@@ -1,11 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 
-import styles from './DarkModeToggle.module.css';
-
 import nightIcon from '../../../public/assets/icons/light/darkMode.png';
 import dayIcon from '../../../public/assets/icons/light/sunny.png';
 
+import styles from './DarkModeToggle.module.css';
 const DarkModeToggle = ({ onDarkModeChange, darkMode }) => {
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;
 	const iconColor = darkMode ? styles.darkIconColor : styles.lightIconColor;

@@ -6,20 +6,12 @@ import styles from './Sunset.module.css';
 import lightIcon from '../../../public/assets/icons/light/sunset.png';
 import darkIcon from '../../../public/assets/icons/dark/sunset.png';
 
+import { formatISOToTime } from '@/utils/dateUtils';
+
 const Sunset = ({ sunsetTime, darkMode }) => {
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;
 	const textColor = darkMode ? 'darkText' : 'lightText';
 	const icon = darkMode ? darkIcon : lightIcon;
-
-	// Simple function to format ISO date to "HH:MM"
-	const formatISOToTime = (isoString) => {
-		if (!isoString) return 'No Data'; // Check for null or undefined
-
-		const date = new Date(isoString);
-		const hours = date.getHours().toString().padStart(2, '0');
-		const minutes = date.getMinutes().toString().padStart(2, '0');
-		return `${hours}:${minutes}`;
-	};
 
 	return (
 		<div className={containerStyle}>

@@ -8,9 +8,6 @@ import Spinner from '@/components/Spinner/Spinner';
 
 import '../styles/globals.css';
 
-import AirQualityPlaceholder from '../Airquality.json';
-import WeatherPlaceholder from '../placeholder.json';
-
 export default function Main() {
 	const router = useRouter();
 	const { latitude: queryLatitude, longitude: queryLongitude } = router.query;
@@ -67,7 +64,6 @@ export default function Main() {
 			let lat = parseFloat(queryLatitude);
 			let lon = parseFloat(queryLongitude);
 
-			// Set latitude and longitude only if they are valid
 			if (!isNaN(lat) && !isNaN(lon)) {
 				updateCoordinates({ latitude: lat, longitude: lon });
 			} else {
