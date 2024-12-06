@@ -20,20 +20,20 @@
 
     .darkContainer,
     .lightContainer {
-        width: 359px;
+        width: 22.438rem;
         height: auto;
-        margin-top: 39px;
-        padding-top: 40px;
-        padding-bottom: 8px;
+        margin-top: 2.438rem;
+        padding-top: 2.5rem;
+        padding-bottom: 0.5rem;
     }
 
     .parent {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: 48px 184px 376px 288px 181px repeat(6, 56px);
-        grid-column-gap: 8px;
-        grid-row-gap: 16px;
-        margin-left: 8px;
+        grid-column-gap: 0.5rem;
+        grid-row-gap: 1rem;
+        margin-left: 0.5rem;
     }
 
     .div1 {
@@ -43,7 +43,7 @@
     .div2 {
         display: flex;
         justify-content: flex-end;
-        margin-right: 16px;
+        margin-right: 1rem;
         grid-area: 1 / 2 / 2 / 4;
     }
 
@@ -101,19 +101,19 @@
 
     .darkContainer,
     .lightContainer {
-        width: 625px;
+        width: 39.063rem;
         height: auto;
-        margin-top: 39px;
-        padding-top: 40px;
-        padding-bottom: 8px;
+        margin-top: 2.438rem;
+        padding-top: 2.5rem;
+        padding-bottom: 0.5rem;
     }
 
     .parent {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: 48px 256px 239px 362px 236px repeat(3, 110px);
-        grid-column-gap: 8px;
-        grid-row-gap: 16px;
+        grid-column-gap: 0.5rem;
+        grid-row-gap: 1rem;
         overflow: auto;
     }
 
@@ -125,7 +125,7 @@
         grid-area: 1 / 2 / 2 / 4;
         display: flex;
         justify-content: flex-end;
-        margin-right: 16px;
+        margin-right: 1rem;
     }
 
     .div3 {
@@ -164,7 +164,7 @@
     }
 
     .div9 {
-        margin-left: 16px;
+        margin-left: 1rem;
         display: flex;
         justify-content: center;
         grid-area: 6 / 1 / 7 / 2;
@@ -172,7 +172,7 @@
 
     .div10 {
         display: flex;
-        margin-left: 16px;
+        margin-left: 1rem;
         justify-content: center;
         grid-area: 7 / 1 / 8 / 2;
     }
@@ -191,7 +191,7 @@
 
     .div13 {
         display: flex;
-        margin-left: 16px;
+        margin-left: 1rem;
         justify-content: center;
         grid-area: 8 / 1 / 9 / 2;
     }
@@ -208,10 +208,10 @@
     .darkContainer,
     .lightContainer {
         box-sizing: border-box;
-        width: 1440px;
-        height: 824px;
+        width: 90rem;
+        height: 51.5rem;
         padding: 16px 36px 16px 36px;
-        margin-top: 39px;
+        margin-top: 2.438rem;
     }
 
     .parent {

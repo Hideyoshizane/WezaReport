@@ -7,23 +7,23 @@
 @media (max-width:640px) {
 
     .chart {
-        width: 228px;
-        height: 119px;
+        width: 14.25rem;
+        height: 7.438rem;
     }
 
 }
 
 @media(min-width: 641px) and (max-width:1447px) {
     .chart {
-        width: 195px;
-        height: 150px;
+        width: 12.188rem;
+        height: 9.375rem;
     }
 }
 
 @media (min-width: 1448px) {
 
     .chart {
-        width: 200px;
-        height: 140px;
+        width: 12.5rem;
+        height: 8.75rem;
     }
 }

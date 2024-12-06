@@ -22,13 +22,13 @@
 }
 
 .iconSize {
-    width: 32px;
-    height: 32px;
+    width: 2rem;
+    height: 2rem;
 }
 
 .titleWrapper {
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
     align-items: center;
 }
 
@@ -37,34 +37,34 @@
 
     .darkContainer,
     .lightContainer {
-        width: 343px;
-        height: 56px;
+        width: 21.438rem;
+        height: 3.5rem;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
 
         box-sizing: border-box;
-        padding: 0 16px;
+        padding: 0 1rem;
     }
 
     .titleWrapper {
         align-items: center;
-        gap: 4px;
+        gap: 0.25rem;
     }
 
     .iconSize {
-        width: 32px;
-        height: 32px;
+        width: 2rem;
+        height: 2rem;
     }
 
     .Title {
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: 500;
     }
 
     .Text {
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: 600;
     }
 
@@ -75,18 +75,18 @@
 
     .darkContainer,
     .lightContainer {
-        width: 291px;
-        height: 110px;
+        width: 18.188rem;
+        height: 6.875rem;
     }
 
     .Title {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 500;
-        margin-bottom: 8px;
+        margin-bottom: 0.5rem;
     }
 
     .Text {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 300;
     }
 }
@@ -95,18 +95,18 @@
 
     .darkContainer,
     .lightContainer {
-        width: 145px;
-        height: 101px;
+        width: 9.063rem;
+        height: 6.313rem;
     }
 
     .Title {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 500;
-        margin-bottom: 8px;
+        margin-bottom: 0.5rem;
     }
 
     .Text {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 300;
     }
 }

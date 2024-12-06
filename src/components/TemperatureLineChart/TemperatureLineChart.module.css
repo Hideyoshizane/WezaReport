@@ -1,6 +1,6 @@
 @media (max-width:640px) {
     .container {
-        width: 311px;
+        width: 19.438rem;
     }
 }
 
@@ -8,15 +8,15 @@
     .container {
         display: flex;
         justify-content: center;
-        width: 530px;
-        height: 251px;
-        margin-top: 16px;
+        width: 33.125rem;
+        height: 15.688rem;
+        margin-top: 1rem;
     }
 }
 
 @media (min-width: 1448px) {
     .container {
-        margin-top: 16px;
-        width: 397px;
+        margin-top: 1rem;
+        width: 24.813rem;
     }
 }

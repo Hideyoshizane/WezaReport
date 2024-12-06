@@ -16,7 +16,7 @@ const TemperatureChart = ({ temperature, time, darkMode, usaMode }) => {
 
 	const convertedTemperature = usaMode ? temperature.map((temp) => convertTemp(temp)) : temperature;
 
-	const formattedTime = formatTimeArray(timeArray);
+	const formattedTime = formatTimeArray(time);
 	return (
 		<motion.div className={containerStyle} {...popInAnimation} onAnimationComplete={() => setChartVisible(true)}>
 			<div className={styles.titleWrapper}>

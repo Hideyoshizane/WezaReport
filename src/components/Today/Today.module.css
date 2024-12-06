@@ -9,38 +9,38 @@
 @media (max-width:640px) {
 
     .container {
-        width: 343px;
-        height: 184px;
+        width: 21.438rem;
+        height: 11.5rem;
         box-sizing: border-box;
     }
 
     .iconSize {
-        width: 96px;
-        height: 96px;
-        margin-top: 16px;
+        width: 6rem;
+        height: 6rem;
+        margin-top: 1rem;
     }
 
     .firstRow {
         display: flex;
-        margin-top: 9px;
-        margin-left: -42px;
+        margin-top: 0.563rem;
+        margin-left: -2.625rem;
     }
 
     .titleWrapper {
         display: flex;
         flex-direction: column;
-        gap: 8px;
-        margin-top: 16px;
-        margin-left: 16px;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        margin-left: 1rem;
     }
 
     .Title {
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 600;
     }
 
     .Text {
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 400;
     }
 
@@ -51,22 +51,22 @@
     }
 
     .max {
-        font-size: 32px;
+        font-size: 2rem;
         font-weight: 700;
         position: relative;
-        margin-left: -50px;
+        margin-left: -3.125rem;
     }
 
     .low {
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 300;
-        transform: translateX(33px);
+        transform: translateX(2.063rem);
     }
 
     .apparentTemp {
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 300;
-        transform: translateX(49px);
+        transform: translateX(3.063rem);
     }
 
 }
@@ -74,127 +74,127 @@
 @media(min-width: 641px) and (max-width:1447px) {
 
     .container {
-        width: 593px;
-        height: 256px;
+        width: 37.063rem;
+        height: 16rem;
         box-sizing: border-box;
     }
 
     .iconSize {
-        width: 176px;
-        height: 176px;
+        width: 11rem;
+        height: 11rem;
     }
 
     .firstRow {
         display: flex;
-        margin-left: -173px;
-        margin-top: -7px;
+        margin-left: -10.813rem;
+        margin-top: -0.438rem;
     }
 
     .titleWrapper {
         display: flex;
         flex-direction: column;
-        gap: 8px;
-        margin-left: 24px;
+        gap: 0.5rem;
+        margin-left: 1.5rem;
     }
 
     .Title {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 600;
     }
 
     .Text {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 400;
     }
 
     .secondRow {
         display: flex;
         align-items: flex-end;
-        gap: 16px;
+        gap: 1rem;
         box-sizing: border-box;
-        margin-left: 173px;
-        margin-top: -52px;
+        margin-left: 10.813rem;
+        margin-top: -3.25rem;
     }
 
     .max {
-        font-size: 40px;
+        font-size: 2.5rem;
         font-weight: 700;
     }
 
     .low {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 300;
     }
 
     .apparentTemp {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 300;
-        margin-left: 23px;
+        margin-left: 1.438rem;
     }
 }
 
 @media (min-width: 1448px) {
 
     .container {
-        width: 451px;
-        height: 320px;
+        width: 28.188rem;
+        height: 20rem;
         box-sizing: border-box;
     }
 
     .iconSize {
-        width: 176px;
-        height: 176px;
-        margin-left: -10px;
+        width: 11rem;
+        height: 11rem;
+        margin-left: -0.625rem;
     }
 
     .firstRow {
         display: flex;
-        margin-top: 9px;
+        margin-top: 0.563rem;
     }
 
     .titleWrapper {
         display: flex;
         flex-direction: column;
-        gap: 8px;
-        margin-top: 16px;
-        margin-left: 24px;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        margin-left: 1.5rem;
     }
 
     .Title {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 600;
     }
 
     .Text {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 400;
     }
 
     .secondRow {
         display: flex;
         align-items: flex-end;
-        gap: 24px;
-        margin-top: 32px;
-        margin-bottom: 7px;
-        width: 380px;
+        gap: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 0.438rem;
+        width: 23.75rem;
         box-sizing: border-box;
     }
 
     .max {
-        font-size: 40px;
+        font-size: 2.5rem;
         font-weight: 700;
-        margin-left: -9px;
+        margin-left: -0.563rem;
     }
 
     .low {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 300;
     }
 
     .apparentTemp {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 300;
-        margin-left: 23px;
+        margin-left: 1.438rem;
     }
 
 }

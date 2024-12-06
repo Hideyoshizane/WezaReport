@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 
@@ -18,13 +18,13 @@
 }
 
 .iconSize {
-    width: 32px;
-    height: 32px;
+    width: 2rem;
+    height: 2rem;
 }
 
 .titleWrapper {
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
     align-items: center;
 }
 
@@ -33,8 +33,8 @@
 
     .darkContainer,
     .lightContainer {
-        width: 168px;
-        height: 56px;
+        width: 10.5rem;
+        height: 3.5rem;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -43,22 +43,22 @@
 
     .titleWrapper {
         align-items: center;
-        gap: 4px;
+        gap: 0.25rem;
     }
 
     .iconSize {
-        width: 24px;
-        height: 24px;
+        width: 1.5rem;
+        height: 1.5rem;
     }
 
     .Title {
-        font-size: 12px;
+        font-size: 0.75rem;
         font-weight: 500;
-        width: 41px;
+        width: 2.563rem;
     }
 
     .Text {
-        font-size: 12px;
+        font-size: 0.75rem;
         font-weight: 600;
     }
 
@@ -69,17 +69,17 @@
 
     .darkContainer,
     .lightContainer {
-        width: 291px;
-        height: 110px;
+        width: 18.188rem;
+        height: 6.875rem;
     }
 
     .Title {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 500;
     }
 
     .Text {
-        font-size: 32px;
+        font-size: 2rem;
         font-weight: 400;
     }
 }
@@ -88,17 +88,17 @@
 
     .darkContainer,
     .lightContainer {
-        width: 297px;
-        height: 138px;
+        width: 18.563rem;
+        height: 8.625rem;
     }
 
     .Title {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 500;
     }
 
     .Text {
-        font-size: 32px;
+        font-size: 2rem;
         font-weight: 400;
     }
 }

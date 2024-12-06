@@ -1,6 +1,6 @@
 .wrapper {
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 
@@ -13,7 +13,7 @@
 
 @media(min-width: 641px) and (max-width:1447px) {
     .wrapper {
-        width: 593px;
+        width: 37.063rem;
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;

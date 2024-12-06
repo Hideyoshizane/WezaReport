@@ -21,17 +21,17 @@
 
     .darkContainer,
     .lightContainer {
-        width: 343px;
-        height: 181px;
+        width: 21.438rem;
+        height: 11.313rem;
     }
 
     .Title {
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: 500;
     }
 
     .Level {
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: 400;
     }
 
@@ -41,17 +41,17 @@
 
     .darkContainer,
     .lightContainer {
-        width: 292px;
-        height: 236px;
+        width: 18.25rem;
+        height: 14.75rem;
     }
 
     .Title {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 500;
     }
 
     .Level {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 400;
     }
 }
@@ -60,17 +60,17 @@
 
     .darkContainer,
     .lightContainer {
-        width: 297px;
-        height: 283px;
+        width: 18.563rem;
+        height: 17.688rem;
     }
 
     .Title {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 500;
     }
 
     .Level {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 400;
     }
 }

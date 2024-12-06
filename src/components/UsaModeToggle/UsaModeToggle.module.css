@@ -4,8 +4,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 64px;
-    height: 64px;
+    width: 4rem;
+    height: 4rem;
     cursor: pointer;
 }
 
@@ -19,24 +19,24 @@
 }
 
 .textDiv {
-    margin-left: 8px;
+    margin-left: 0.5rem;
 }
 
 @media (max-width:640px) {
 
     .Icon {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 600;
     }
 
     .textDiv {
         display: flex;
         align-items: center;
-        margin-left: 16px;
+        margin-left: 1rem;
     }
 
     .Text {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 400;
     }
 
@@ -45,18 +45,18 @@
 
 @media(min-width: 641px) and (max-width:1447px) {
     .Icon {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 600;
     }
 
     .textDiv {
         display: flex;
         align-items: center;
-        margin-left: 16px;
+        margin-left: 1rem;
     }
 
     .Text {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 400;
     }
 }
@@ -64,7 +64,7 @@
 @media (min-width: 1448px) {
 
     .Icon {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 600;
     }
 

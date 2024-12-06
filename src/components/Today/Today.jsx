@@ -7,7 +7,12 @@ import { convertTemp, roundTemperature } from '@/utils/temperatureUtils';
 
 const Today = ({ time, code, maxTemp, lowTemp, apparentTemp, darkMode, usaMode }) => {
 	const dayOfWeek = new Date(time).toLocaleDateString('en-US', { weekday: 'long' });
-	const timeConverted = new Date(time).toISOString().slice(11, 16);
+	const timeConverted = new Date(time).toLocaleString('en-US', {
+		hour: '2-digit',
+		minute: '2-digit',
+		hour12: false,
+	});
+	console.log(time);
 
 	maxTemp = usaMode ? convertTemp(maxTemp) : roundTemperature(maxTemp);
 	lowTemp = usaMode ? convertTemp(lowTemp) : roundTemperature(lowTemp);
@@ -16,7 +21,6 @@ const Today = ({ time, code, maxTemp, lowTemp, apparentTemp, darkMode, usaMode }
 	const { icon, category } = useWeatherIcon(code, darkMode);
 	const capitalizedCategory = category.charAt(0).toUpperCase() + category.slice(1);
 
-	// Combine container and specific styles
 	const getContainerStyle = () => `${styles.container} ${`${category}${darkMode ? 'Dark' : 'Light'}`}`;
 	const getTextColor = () => (category === 'storm' && !darkMode ? 'darkText' : darkMode ? 'darkText' : 'lightText');
 

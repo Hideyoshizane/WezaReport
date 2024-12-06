@@ -6,13 +6,13 @@
 }
 
 .iconSize {
-    width: 48px;
-    height: 48px;
+    width: 3rem;
+    height: 3rem;
 }
 
 .titleWrapper {
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
     align-items: center;
 }
 
@@ -20,7 +20,7 @@
 @media (max-width:640px) {
 
     .Title {
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 400;
     }
 
@@ -30,7 +30,7 @@
 @media(min-width: 641px) and (max-width:1447px) {
 
     .Title {
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 400;
     }
 
@@ -39,14 +39,14 @@
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        margin-left: 16px;
+        margin-left: 1rem;
     }
 }
 
 @media (min-width: 1448px) {
 
     .Title {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 400;
     }
 

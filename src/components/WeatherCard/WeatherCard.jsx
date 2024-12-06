@@ -11,12 +11,14 @@ const WeatherCard = ({ day, code, maxTemp, lowTemp, darkMode, usaMode }) => {
 	lowTemp = usaMode ? convertTemp(lowTemp) : roundTemperature(lowTemp);
 	const { icon, category } = useWeatherIcon(code, darkMode);
 
-	const containerStyle = `${styles.container} ${`${category}${darkMode ? 'Dark' : 'Light'}`}`;
-	const textColor =
-		containerStyle === `${styles.container} ${styles.stormLight}` ? 'darkText' : darkMode ? 'darkText' : 'lightText';
+	const containerClass = `${styles.container} ${category}${darkMode ? 'Dark' : 'Light'}`;
+
+	const isStormLight = category === 'storm';
+
+	const textColor = isStormLight ? 'darkText' : darkMode ? 'darkText' : 'lightText';
 
 	return (
-		<div className={containerStyle}>
+		<div className={containerClass}>
 			<div className={styles.titleWrapper}>
 				<h1 className={`${styles.Title} ${textColor}`}>{day}</h1>
 				<Image src={icon} alt={`${category} icon`} className={styles.iconSize} priority />
