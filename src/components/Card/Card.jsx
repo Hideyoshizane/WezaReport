@@ -64,7 +64,7 @@ const Card = ({ dataObject, airObject, onSetDarkMode, onSetUsaMode, usaMode, dar
 					<Visibility hourly={dataObject.hourly.time} visibility={dataObject.hourly.visibility} darkMode={darkMode} />
 				</motion.div>
 				<motion.div className={styles.div8} {...popInAnimation}>
-					<Pressure pressurehPa={dataObject.current.surface_pressure} darkMode={darkMode} />;
+					<Pressure pressurehPa={dataObject.current.surface_pressure} darkMode={darkMode} />
 				</motion.div>
 				<motion.div className={styles.div9} {...popInAnimation}>
 					<Humidity percentage={dataObject.current.relative_humidity_2m} darkMode={darkMode} />

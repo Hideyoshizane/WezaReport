@@ -12,7 +12,6 @@ const Today = ({ time, code, maxTemp, lowTemp, apparentTemp, darkMode, usaMode }
 		minute: '2-digit',
 		hour12: false,
 	});
-	console.log(time);
 
 	maxTemp = usaMode ? convertTemp(maxTemp) : roundTemperature(maxTemp);
 	lowTemp = usaMode ? convertTemp(lowTemp) : roundTemperature(lowTemp);

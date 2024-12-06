@@ -76,8 +76,6 @@ export default function Main() {
 	useEffect(() => {
 		if (coordinates.latitude !== null && coordinates.longitude !== null) {
 			fetchWeatherAndAirQualityData(coordinates.latitude, coordinates.longitude);
-		} else {
-			console.log('Latitude or longitude is not set correctly');
 		}
 	}, [coordinates]); // Trigger when coordinates change
 
