@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import { useCoordinates } from '@/contexts/CoordinatesContext';
 
 import Cookies from 'js-cookie';
@@ -88,6 +89,9 @@ export default function Main() {
 	};
 	return (
 		<div>
+			<Head>
+				<title>WezaReport</title>
+			</Head>
 			{weatherData && airQualityData ? (
 				<>
 					<BackgroundImage code={weatherData.current.weather_code} darkMode={darkMode} />

@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Head from 'next/head';
 
 import styles from './index.module.css';
 import indexBackground from '../../../public/assets/background/index.jpg';
@@ -7,6 +8,9 @@ import indexBackground from '../../../public/assets/background/index.jpg';
 const IndexPageComponent = () => {
 	return (
 		<div className={styles.background}>
+			<Head>
+				<title>WezaReport</title>
+			</Head>
 			<div className={styles.imageWrapper}>
 				<Image src={indexBackground} alt="A scenic beach image" fill objectFit="cover" priority />
 			</div>
