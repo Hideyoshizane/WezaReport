@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useCoordinates } from '@/contexts/CoordinatesContext';
 
+import Cookies from 'js-cookie';
+
 import Card from '@/components/Card/Card';
 import BackgroundImage from '@/components/BackgroundImage/BackgroundImage';
 import Spinner from '@/components/Spinner/Spinner';
@@ -12,26 +14,15 @@ export default function Main() {
 	const router = useRouter();
 	const { latitude: queryLatitude, longitude: queryLongitude } = router.query;
 	const { coordinates, updateCoordinates } = useCoordinates();
-	const [darkMode, setDarkMode] = useState(true);
-	const [usaMode, setUsaMode] = useState(false);
+	const [darkMode, setDarkMode] = useState(() => {
+		const storedDarkMode = Cookies.get('darkMode');
+		return storedDarkMode ? storedDarkMode === 'true' : false; // Default to false
+	});
 
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const storedDarkMode = localStorage.getItem('darkMode');
-			if (storedDarkMode !== null) {
-				setDarkMode(JSON.parse(storedDarkMode));
-			}
-		}
-	}, []);
-
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const storedUsaMode = localStorage.getItem('usaMode');
-			if (storedUsaMode !== null) {
-				setDarkMode(JSON.parse(storedUsaMode));
-			}
-		}
-	}, []);
+	const [usaMode, setUsaMode] = useState(() => {
+		const storedUsaMode = Cookies.get('usaMode');
+		return storedUsaMode ? storedUsaMode === 'true' : false; // Default to false
+	});
 
 	const [weatherData, setWeatherData] = useState(null);
 	const [airQualityData, setAirQualityData] = useState(null);
@@ -79,13 +70,13 @@ export default function Main() {
 		}
 	}, [coordinates]); // Trigger when coordinates change
 
-	// Update localStorage when darkMode or usaMode changes
+	// Update cookies when darkMode or usaMode changes
 	useEffect(() => {
-		localStorage.setItem('darkMode', JSON.stringify(darkMode));
+		Cookies.set('darkMode', darkMode.toString());
 	}, [darkMode]);
 
 	useEffect(() => {
-		localStorage.setItem('usaMode', JSON.stringify(usaMode));
+		Cookies.set('usaMode', usaMode.toString());
 	}, [usaMode]);
 
 	const handleDarkModeChange = () => {

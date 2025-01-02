@@ -120,14 +120,18 @@ const Search = ({ darkMode }) => {
 				{suggestions.length > 0 && (
 					<div className={styles.suggestionsContainer} ref={suggestionsRef}>
 						<ul className={styles.suggestionsList}>
-							{suggestions.map((city, index) => (
-								<li
-									key={`${city.latitude}-${city.longitude}-${city.name}-${index}`}
-									onClick={() => handleSuggestionClick(city)}
-									className={`${styles.suggestionItem} ${textColor}`}>
-									{city.name}
-								</li>
-							))}
+							{suggestions.map((city, index) => {
+								const truncatedName = city.name.length > 35 ? `${city.name.slice(0, 35)}...` : city.name;
+								return (
+									<li
+										key={`${city.latitude}-${city.longitude}-${city.name}-${index}`}
+										onClick={() => handleSuggestionClick(city)}
+										className={`${styles.suggestionItem} ${textColor}`}
+										title={city.name}>
+										{truncatedName}
+									</li>
+								);
+							})}
 						</ul>
 					</div>
 				)}
