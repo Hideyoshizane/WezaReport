@@ -1,15 +1,15 @@
-import sunnyLightIcon from '../../public/assets/icons/light/sunny.png';
-import sunnyDarkIcon from '../../public/assets/icons/dark/sunny.png';
-import cloudyLightIcon from '../../public/assets/icons/light/cloudy.png';
-import cloudyDarkIcon from '../../public/assets/icons/dark/cloudy.png';
-import rainyLightIcon from '../../public/assets/icons/light/rainy.png';
-import rainyDarkIcon from '../../public/assets/icons/dark/rainy.png';
-import snowLightIcon from '../../public/assets/icons/light/snow.png';
-import snowDarkIcon from '../../public/assets/icons/dark/snow.png';
-import snowstormLightIcon from '../../public/assets/icons/light/snowstorm.png';
-import snowstormDarkIcon from '../../public/assets/icons/dark/snowstorm.png';
-import stormLightIcon from '../../public/assets/icons/light/storm.png';
-import stormDarkIcon from '../../public/assets/icons/dark/storm.png';
+import sunnyLightIcon from '../../public/assets/icons/light/sunny.webp';
+import sunnyDarkIcon from '../../public/assets/icons/dark/sunny.webp';
+import cloudyLightIcon from '../../public/assets/icons/light/cloudy.webp';
+import cloudyDarkIcon from '../../public/assets/icons/dark/cloudy.webp';
+import rainyLightIcon from '../../public/assets/icons/light/rainy.webp';
+import rainyDarkIcon from '../../public/assets/icons/dark/rainy.webp';
+import snowLightIcon from '../../public/assets/icons/light/snow.webp';
+import snowDarkIcon from '../../public/assets/icons/dark/snow.webp';
+import snowstormLightIcon from '../../public/assets/icons/light/snowstorm.webp';
+import snowstormDarkIcon from '../../public/assets/icons/dark/snowstorm.webp';
+import stormLightIcon from '../../public/assets/icons/light/storm.webp';
+import stormDarkIcon from '../../public/assets/icons/dark/storm.webp';
 
 const weatherCategories = {
 	sunny: { lightIcon: sunnyLightIcon, darkIcon: sunnyDarkIcon },

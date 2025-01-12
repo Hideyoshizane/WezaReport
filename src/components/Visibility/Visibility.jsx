@@ -5,8 +5,8 @@ import { findClosestTimestampIndex } from '@/utils/dateUtils';
 
 import styles from './Visibility.module.css';
 
-import lightIcon from '../../../public/assets/icons/light/visibility.png';
-import darkIcon from '../../../public/assets/icons/dark/visibility.png';
+import lightIcon from '../../../public/assets/icons/light/visibility.webp';
+import darkIcon from '../../../public/assets/icons/dark/visibility.webp';
 
 const Visibility = ({ hourly, visibility, darkMode }) => {
 	const index = findClosestTimestampIndex(hourly);

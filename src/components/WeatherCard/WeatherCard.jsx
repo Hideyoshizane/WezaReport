@@ -9,6 +9,7 @@ import styles from './WeatherCard.module.css';
 const WeatherCard = ({ day, code, maxTemp, lowTemp, darkMode, usaMode }) => {
 	maxTemp = usaMode ? convertTemp(maxTemp) : roundTemperature(maxTemp);
 	lowTemp = usaMode ? convertTemp(lowTemp) : roundTemperature(lowTemp);
+
 	const { icon, category } = useWeatherIcon(code, darkMode);
 
 	const containerClass = `${styles.container} ${category}${darkMode ? 'Dark' : 'Light'}`;

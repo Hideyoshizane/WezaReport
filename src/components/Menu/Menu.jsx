@@ -5,8 +5,8 @@ import Search from '@/components/Search/Search';
 import UsaModeToggle from '@/components/UsaModeToggle/UsaModeToggle';
 import DarkModeToggle from '@/components/DarkModeToggle/DarkModeToggle';
 
-import lightIcon from '../../../public/assets/icons/light/menu.png';
-import darkIcon from '../../../public/assets/icons/dark/menu.png';
+import lightIcon from '../../../public/assets/icons/light/menu.webp';
+import darkIcon from '../../../public/assets/icons/dark/menu.webp';
 
 import styles from './Menu.module.css';
 

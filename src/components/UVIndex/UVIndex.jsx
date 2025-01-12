@@ -1,25 +1,32 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import UVChart from '../UVChart/UVChart';
 import styles from './UVIndex.module.css';
 
 const UVIndex = ({ uvValue, darkMode }) => {
-	// Function to determine UV index message based on the value
-	const getUVMessage = (value) => {
-		if (value < 0) return `Invalid value (${value})`;
-		if (value <= 2.9) return `Low (${value})`;
-		if (value <= 5.9) return `Moderate (${value})`;
-		if (value <= 7.9) return `High (${value})`;
-		if (value <= 10.9) return `Very High (${value})`;
-		return `Extreme (${value})`;
-	};
+	// Memoize the UV index message based on value
+	const uvMessage = useMemo(() => {
+		if (uvValue < 0) return `Invalid value (${uvValue})`;
+		if (uvValue <= 2.9) return `Low (${uvValue})`;
+		if (uvValue <= 5.9) return `Moderate (${uvValue})`;
+		if (uvValue <= 7.9) return `High (${uvValue})`;
+		if (uvValue <= 10.9) return `Very High (${uvValue})`;
+		return `Extreme (${uvValue})`;
+	}, [uvValue]);
 
-	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;
-	const textColor = darkMode ? 'darkText' : 'lightText';
+	// Memoize container style and text color based on darkMode
+	const { containerStyle, textColor } = useMemo(
+		() => ({
+			containerStyle: darkMode ? styles.darkContainer : styles.lightContainer,
+			textColor: darkMode ? styles.darkText : styles.lightText,
+		}),
+		[darkMode]
+	);
+
 	return (
 		<div className={containerStyle}>
 			<h1 className={`${styles.Title} ${textColor}`}>UV INDEX</h1>
 			<UVChart value={uvValue} />
-			<h2 className={`${styles.Level} ${textColor}`}>{getUVMessage(uvValue)}</h2>
+			<h2 className={`${styles.Level} ${textColor}`}>{uvMessage}</h2>
 		</div>
 	);
 };

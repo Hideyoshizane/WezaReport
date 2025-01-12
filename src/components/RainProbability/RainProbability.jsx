@@ -3,8 +3,8 @@ import Image from 'next/image';
 
 import styles from './RainProbability.module.css';
 
-import lightIcon from '../../../public/assets/icons/light/rain.png';
-import darkIcon from '../../../public/assets/icons/dark/rain.png';
+import lightIcon from '../../../public/assets/icons/light/rain.webp';
+import darkIcon from '../../../public/assets/icons/dark/rain.webp';
 
 const RainProbability = ({ percentage, darkMode }) => {
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;

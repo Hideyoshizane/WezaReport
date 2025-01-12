@@ -3,8 +3,8 @@ import Image from 'next/image';
 
 import styles from './Pressure.module.css';
 
-import lightIcon from '../../../public/assets/icons/light/pressure.png';
-import darkIcon from '../../../public/assets/icons/dark/pressure.png';
+import lightIcon from '../../../public/assets/icons/light/pressure.webp';
+import darkIcon from '../../../public/assets/icons/dark/pressure.webp';
 
 const Pressure = ({ pressurehPa, darkMode }) => {
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;

@@ -3,11 +3,11 @@ import Image from 'next/image';
 
 import styles from './Wind.module.css';
 
-import lightIcon from '../../../public/assets/icons/light/wind.png';
-import darkIcon from '../../../public/assets/icons/dark/wind.png';
+import lightIcon from '../../../public/assets/icons/light/wind.webp';
+import darkIcon from '../../../public/assets/icons/dark/wind.webp';
 
-import windDirectionIconLight from '../../../public/assets/icons/light/windDirection.png';
-import windDirectionIconDark from '../../../public/assets/icons/dark/windDirection.png';
+import windDirectionIconLight from '../../../public/assets/icons/light/windDirection.webp';
+import windDirectionIconDark from '../../../public/assets/icons/dark/windDirection.webp';
 
 const Wind = ({ windSpeed, windDirection, darkMode, usaMode }) => {
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;

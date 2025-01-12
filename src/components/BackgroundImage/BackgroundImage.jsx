@@ -5,13 +5,13 @@ import { useWeatherIcon } from '@/utils/weatherIcons';
 
 import styles from './BackgroundImage.module.css';
 
-import sunny from '../../../public/assets/background/sunny.jpg';
-import cloudy from '../../../public/assets/background/cloudy.jpg';
-import rainy from '../../../public/assets/background/rainy.jpg';
-import snow from '../../../public/assets/background/snow.jpg';
-import snowstorm from '../../../public/assets/background/snowstorm.jpg';
-import storm from '../../../public/assets/background/storm.jpg';
-import dark from '../../../public/assets/background/dark.jpg';
+import sunny from '../../../public/assets/background/sunny.webp';
+import cloudy from '../../../public/assets/background/cloudy.webp';
+import rainy from '../../../public/assets/background/rainy.webp';
+import snow from '../../../public/assets/background/snow.webp';
+import snowstorm from '../../../public/assets/background/snowstorm.webp';
+import storm from '../../../public/assets/background/storm.webp';
+import dark from '../../../public/assets/background/dark.webp';
 
 const categoryToImage = {
 	sunny,
@@ -28,7 +28,7 @@ const BackgroundImage = ({ code, darkMode }) => {
 
 	return (
 		<div className={styles.container}>
-			<Image src={backgroundImage} alt={`${category} background`} fill priority style={{ objectFit: 'cover' }} />
+			<Image src={backgroundImage} alt={`${category} background`} fill style={{ objectFit: 'cover' }} />
 		</div>
 	);
 };

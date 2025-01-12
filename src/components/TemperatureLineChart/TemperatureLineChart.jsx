@@ -2,10 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import {
 	Chart,
 	LineElement,
-	PointElement,
-	LineController,
 	CategoryScale,
 	LinearScale,
+	PointElement,
+	LineController,
 	Title,
 	Tooltip,
 	Legend,
@@ -14,7 +14,7 @@ import {
 
 import styles from './TemperatureLineChart.module.css';
 
-// Register necessary components
+// Register required Chart.js components
 Chart.register(LineElement, PointElement, LineController, CategoryScale, LinearScale, Title, Tooltip, Legend, Filler);
 
 const TemperatureLineChart = ({ time, convertedTemperature, darkMode, usaMode }) => {
@@ -22,80 +22,61 @@ const TemperatureLineChart = ({ time, convertedTemperature, darkMode, usaMode })
 	const chartInstanceRef = useRef(null);
 
 	useEffect(() => {
-		// Clean up existing chart instance if it exists
+		// Destroy existing chart instance if it exists
 		if (chartInstanceRef.current) {
 			chartInstanceRef.current.destroy();
 		}
 
-		// Define colors based on darkMode
-		const borderColor = darkMode ? 'rgba(245, 245, 245, 1)' : 'rgba(17, 42, 70, 1)';
-		const backgroundColor = darkMode ? 'rgba(245, 245, 245, 0.2)' : 'rgba(17, 42, 70, 0.2)';
-		const textColor = darkMode ? 'rgba(245, 245, 245, 1)' : 'rgba(0, 0, 0, 1)'; // Adjusted text color for light mode
-
-		// Create data object for the chart
-		const data = {
-			labels: time, // x-axis labels
-			datasets: [
-				{
-					label: `Temperature (${usaMode ? '°F' : '°C'})`,
-					data: convertedTemperature,
-					borderColor: borderColor, // Line color
-					backgroundColor: backgroundColor, // Area color
-					fill: true,
-					tension: 0.1,
-					pointStyle: 'circle',
-				},
-			],
+		// Determine colors based on dark mode
+		const colors = {
+			border: darkMode ? 'rgba(245, 245, 245, 1)' : 'rgba(17, 42, 70, 1)',
+			background: darkMode ? 'rgba(245, 245, 245, 0.2)' : 'rgba(17, 42, 70, 0.2)',
+			text: darkMode ? 'rgba(245, 245, 245, 1)' : 'rgba(0, 0, 0, 1)',
 		};
 
-		// Define chart configuration
+		// Chart configuration
 		const config = {
 			type: 'line',
-			data: data,
+			data: {
+				labels: time,
+				datasets: [
+					{
+						label: `Temperature (${usaMode ? '°F' : '°C'})`,
+						data: convertedTemperature,
+						borderColor: colors.border,
+						backgroundColor: colors.background,
+						fill: true,
+						tension: 0.1,
+					},
+				],
+			},
 			options: {
 				animation: {
 					duration: 2000,
 					easing: 'easeInOutQuad',
 				},
-				interaction: {
-					intersect: false,
-				},
+				interaction: { intersect: false },
 				responsive: true,
 				plugins: {
-					legend: {
-						labels: {
-							color: textColor,
-						},
-					},
+					legend: { labels: { color: colors.text } },
 				},
 				scales: {
 					x: {
-						title: {
-							display: false,
-							text: 'Time',
-							color: textColor,
-						},
-						ticks: {
-							color: textColor,
-						},
+						ticks: { color: colors.text },
 					},
 					y: {
-						title: {
-							display: true,
-							text: 'Temperature',
-							color: textColor,
-						},
-						ticks: {
-							color: textColor,
-						},
+						title: { display: true, text: 'Temperature', color: colors.text },
+						ticks: { color: colors.text },
 					},
 				},
 			},
 		};
 
+		// Create chart instance
 		const ctx = chartRef.current.getContext('2d');
 		chartInstanceRef.current = new Chart(ctx, config);
 
+		// Cleanup on component unmount
 		return () => {
 			chartInstanceRef.current.destroy();
 		};

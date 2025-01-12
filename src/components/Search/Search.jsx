@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import styles from './Search.module.css';
 
-import lightIcon from '../../../public/assets/icons/light/search.png';
-import darkIcon from '../../../public/assets/icons/dark/search.png';
+import lightIcon from '../../../public/assets/icons/light/search.webp';
+import darkIcon from '../../../public/assets/icons/dark/search.webp';
 
 import { useCoordinates } from '@/contexts/CoordinatesContext';
 

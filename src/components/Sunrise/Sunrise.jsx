@@ -3,8 +3,8 @@ import Image from 'next/image';
 
 import styles from './Sunrise.module.css';
 
-import lightIcon from '../../../public/assets/icons/light/sunrise.png';
-import darkIcon from '../../../public/assets/icons/dark/sunrise.png';
+import lightIcon from '../../../public/assets/icons/light/sunrise.webp';
+import darkIcon from '../../../public/assets/icons/dark/sunrise.webp';
 
 import { formatISOToTime } from '@/utils/dateUtils';
 

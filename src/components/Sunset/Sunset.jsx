@@ -3,8 +3,8 @@ import Image from 'next/image';
 
 import styles from './Sunset.module.css';
 
-import lightIcon from '../../../public/assets/icons/light/sunset.png';
-import darkIcon from '../../../public/assets/icons/dark/sunset.png';
+import lightIcon from '../../../public/assets/icons/light/sunset.webp';
+import darkIcon from '../../../public/assets/icons/dark/sunset.webp';
 
 import { formatISOToTime } from '@/utils/dateUtils';
 

@@ -3,8 +3,8 @@ import Image from 'next/image';
 
 import styles from './Humidity.module.css';
 
-import lightIcon from '../../../public/assets/icons/light/humidity.png';
-import darkIcon from '../../../public/assets/icons/dark/humidity.png';
+import lightIcon from '../../../public/assets/icons/light/humidity.webp';
+import darkIcon from '../../../public/assets/icons/dark/humidity.webp';
 
 const Humidity = ({ percentage, darkMode }) => {
 	const containerStyle = darkMode ? styles.darkContainer : styles.lightContainer;

@@ -3,8 +3,8 @@ import Image from 'next/image';
 
 import styles from './Location.module.css';
 
-import lightIcon from '../../../public/assets/icons/light/location.png';
-import darkIcon from '../../../public/assets/icons/dark/location.png';
+import lightIcon from '../../../public/assets/icons/light/location.webp';
+import darkIcon from '../../../public/assets/icons/dark/location.webp';
 
 async function getCityFromCoordinates(latitude, longitude) {
 	const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;

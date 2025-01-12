@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 
-import nightIcon from '../../../public/assets/icons/light/darkMode.png';
-import dayIcon from '../../../public/assets/icons/light/sunny.png';
+import nightIcon from '../../../public/assets/icons/light/darkMode.webp';
+import dayIcon from '../../../public/assets/icons/light/sunny.webp';
 
 import styles from './DarkModeToggle.module.css';
 const DarkModeToggle = ({ onDarkModeChange, darkMode }) => {
