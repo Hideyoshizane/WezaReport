@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+
+import DOMPurify from 'dompurify';
+
 import Image from 'next/image';
 import styles from './Search.module.css';
 
@@ -58,7 +61,8 @@ const Search = ({ darkMode }) => {
 	};
 
 	const handleInputChange = (e) => {
-		const newValue = e.target.value;
+		//Sanitize the input
+		const newValue = DOMPurify.sanitize(e.target.value);
 		setInputValue(newValue);
 
 		// Fetch suggestions only if the input is long enough

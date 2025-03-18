@@ -17,7 +17,7 @@ const UVIndex = ({ uvValue, darkMode }) => {
 	const { containerStyle, textColor } = useMemo(
 		() => ({
 			containerStyle: darkMode ? styles.darkContainer : styles.lightContainer,
-			textColor: darkMode ? styles.darkText : styles.lightText,
+			textColor: darkMode ? 'darkText' : 'lightText',
 		}),
 		[darkMode]
 	);
